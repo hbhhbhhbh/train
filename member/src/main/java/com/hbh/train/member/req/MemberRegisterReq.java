@@ -1,5 +1,7 @@
 package com.hbh.train.member.req;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class MemberRegisterReq {
     public String getMobile() {
         return mobile;
@@ -15,7 +17,7 @@ public class MemberRegisterReq {
                 "mobile='" + mobile + '\'' +
                 '}';
     }
-
+    @NotBlank(message="手机号不能为空")
     private String mobile;
 
 }
