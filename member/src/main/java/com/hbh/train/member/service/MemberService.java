@@ -3,6 +3,7 @@ package com.hbh.train.member.service;
 import cn.hutool.core.collection.CollUtil;
 import com.hbh.train.common.exception.BusinessException;
 import com.hbh.train.common.exception.BusinessExceptionEnum;
+import com.hbh.train.common.util.SnowUtil;
 import com.hbh.train.member.domain.Member;
 import com.hbh.train.member.domain.MemberExample;
 import com.hbh.train.member.mapper.MemberMapper;
@@ -32,7 +33,7 @@ public class MemberService {
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
         Member member=new Member();
-        member.setId(System.currentTimeMillis());
+        member.setId(SnowUtil.getSnowflakeNextId());
         member.setMobile(mobile);
         memberMapper.insert(member);
         return member.getId();
