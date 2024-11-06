@@ -10,7 +10,6 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/member")
 public class MemberController {
@@ -27,6 +26,7 @@ public class MemberController {
     @PostMapping("/register")
     public CommonResp<Long> register(@Valid MemberRegisterReq req)
     {
+
         long resp= memberService.register(req);
 //        CommonResp<Long>commonResp=new CommonResp<>();
 //        commonResp.setContent(resp);
@@ -34,7 +34,7 @@ public class MemberController {
         return new CommonResp<Long>(resp);
     }
     @PostMapping("/send-code")
-    public CommonResp<Long> sendCode(@Valid MemberSendCodeReq req)
+    public CommonResp<Long> sendCode(@Valid @RequestBody MemberSendCodeReq req)
     {
        memberService.sendCode(req);
 //        CommonResp<Long>commonResp=new CommonResp<>();
