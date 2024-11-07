@@ -2,7 +2,7 @@
   <p>
   <a-button type="primary" @click="showModal">新增</a-button>
   </p>
-  <a-table :columns="columns" :dataSource="passengers" />
+  <a-table :columns="columns" :dataSource="passengers" :pagination="pagination"/>
   <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
     <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 20 }">
       <a-form-item label="姓名">
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { defineComponent,  ref,onMounted } from 'vue';
+import {defineComponent, ref, onMounted, reactive} from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
 
@@ -39,6 +39,13 @@ export default defineComponent({
       createTime: undefined,
       updateTime: undefined,
     });
+    const pagination = reactive(
+        {
+          total:0,
+          current:1,
+          pageSize:2,
+        }
+    )
     const passengers=ref([]);
     const columns= [
       {
@@ -100,6 +107,7 @@ export default defineComponent({
       passenger,
       passengers,
       columns,
+      pagination,
     };
   },
 });
