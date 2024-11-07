@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/member")
 public class MemberController {
+
     @Resource
     private MemberService memberService;
     @GetMapping ("/count")
