@@ -3,6 +3,7 @@ package com.hbh.train.member.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
+import com.github.pagehelper.PageHelper;
 import com.hbh.train.common.context.LoginMemberContext;
 import com.hbh.train.common.util.SnowUtil;
 import com.hbh.train.member.domain.Passenger;
@@ -39,7 +40,7 @@ public class PassengerService
         {
             criteria.andMemberIdEqualTo(req.getMemberId());
         }
-//        PageHelper.startPage(1,2);//分页,查询第一条，查两条
+        PageHelper.startPage(req.getPage(),req.getSize());//分页,查询第一条，查两条
         List<Passenger>passengerList=passengerMapper.selectByExample(passengerexample);
         return BeanUtil.copyToList(passengerList,PassengerQueryResp.class);
     }

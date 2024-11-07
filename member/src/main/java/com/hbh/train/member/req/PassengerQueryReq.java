@@ -1,6 +1,8 @@
 package com.hbh.train.member.req;
 
-public class PassengerQueryReq {
+import com.hbh.train.common.req.PageReq;
+
+public class PassengerQueryReq extends PageReq {
 
     public Long getMemberId() {
         return memberId;
