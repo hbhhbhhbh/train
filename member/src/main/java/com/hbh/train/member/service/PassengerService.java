@@ -39,6 +39,7 @@ public class PassengerService
         {
             criteria.andMemberIdEqualTo(req.getMemberId());
         }
+//        PageHelper.startPage(1,2);//分页,查询第一条，查两条
         List<Passenger>passengerList=passengerMapper.selectByExample(passengerexample);
         return BeanUtil.copyToList(passengerList,PassengerQueryResp.class);
     }
