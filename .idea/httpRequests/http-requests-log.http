@@ -1,5 +1,97 @@
 POST http://localhost:8000/member/passenger/save
 Content-Type: application/json
+token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzA5NDgwNDgsIm1vYmlsZSI6IjEzMzYyNzcwNzYzIiwiaWQiOjE4NTM5Nzc3NTM0Mzk4MzQxMTIsImV4cCI6MTczMTAzNDQ0OCwiaWF0IjoxNzMwOTQ4MDQ4fQ.3igj-WXWwCBBtTbLhWsuMkQij3PFMLStU1fDgVjzkXY
+Content-Length: 56
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"name": "test",
+  "idCard": "123321",
+  "type": "1"
+}
+
+<> 2024-11-07T105821.200.json
+
+###
+
+POST http://localhost:8000/member/passenger/save
+Content-Type: application/json
+token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzA5NDgwNDgsIm1vYmlsZSI6IjEzMzYyNzcwNzYzIiwiaWQiOjE4NTM5Nzc3NTM0Mzk4MzQxMTIsImV4cCI6MTczMTAzNDQ0OCwiaWF0IjoxNzMwOTQ4MDQ4fQ.3igj-WXWwCBBtTbLhWsuMkQij3PFMLStU1fDgVjzkXY
+Content-Length: 56
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"name": "test",
+  "idCard": "123321",
+  "type": "1"
+}
+
+<> 2024-11-07T105804.200.json
+
+###
+
+POST http://localhost:8000/member/passenger/save
+Content-Type: application/json
+token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzA5NDgwNDgsIm1vYmlsZSI6IjEzMzYyNzcwNzYzIiwiaWQiOjE4NTM5Nzc3NTM0Mzk4MzQxMTIsImV4cCI6MTczMTAzNDQ0OCwiaWF0IjoxNzMwOTQ4MDQ4fQ.3igj-WXWwCBBtTbLhWsuMkQij3PFMLStU1fDgVjzkXY
+Content-Length: 56
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"name": "test",
+  "idCard": "123321",
+  "type": "1"
+}
+
+<> 2024-11-07T105729.200.json
+
+###
+
+POST http://localhost:8000/member/passenger/save
+Content-Type: application/json
+token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzA5NDgwNDgsIm1vYmlsZSI6IjEzMzYyNzcwNzYzIiwiaWQiOjE4NTM5Nzc3NTM0Mzk4MzQxMTIsImV4cCI6MTczMTAzNDQ0OCwiaWF0IjoxNzMwOTQ4MDQ4fQ.3igj-WXWwCBBtTbLhWsuMkQij3PFMLStU1fDgVjzkXY
+Content-Length: 71
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"memberId":"1",
+"name": "test",
+  "idCard": "123321",
+  "type": "1"
+}
+
+<> 2024-11-07T105438.200.json
+
+###
+
+POST http://localhost:8000/member/member/login
+Content-Type: application/json
+Content-Length: 46
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile":"13362770763",
+  "code": "8888"
+}
+
+<> 2024-11-07T105409.200.json
+
+###
+
+POST http://localhost:8000/member/passenger/save
+Content-Type: application/json
 token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzA5NDY4MTksIm1vYmlsZSI6IjEzMzYyNzcwNzYzIiwiaWQiOjE4NTM5Nzc3NTM0Mzk4MzQxMTIsImV4cCI6MTczMTAzMzIxOSwiaWF0IjoxNzMwOTQ2ODE5fQ.frjUClYOol2pWOwcs_ADyvxOOibb2Xg4aECIA8kzRUQ
 Content-Length: 71
 Connection: Keep-Alive
@@ -583,62 +675,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 mobile=99099
 
 <> 2024-11-02T170041.200.json
-
-###
-
-POST http://localhost:8000/member/member/register
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 9
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-mobile=99
-
-<> 2024-11-02T165131.500.json
-
-###
-
-POST http://localhost:8000/member/member/register
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 9
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-mobile=99
-
-<> 2024-11-02T164046.200.json
-
-###
-
-GET http://localhost:8000/member/member/register
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-02T163625.200.json
-
-###
-
-GET http://localhost:8000/member/member/count
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-02T161639.200.json
-
-###
-
-GET http://localhost:8000/member/member/count
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-01T174720.200.json
 
 ###
 
