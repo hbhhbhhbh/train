@@ -16,6 +16,18 @@ const routes = [
     mata:{
       loginRequire:true
     },
+    children:[{
+      path:'welcome',
+      component: () => import(/* webpackChunkName: "about"*/'../views/main/welcome.vue')
+    },
+      {
+        path:'passenger',
+        component: () => import(/* webpackChunkName: "about"*/'../views/main/passenger.vue')
+      }]
+  },
+  {
+    path:'',
+    redirect:'/welcome'
   }
 ]
 
