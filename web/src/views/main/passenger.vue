@@ -20,7 +20,15 @@
             <a style="color:red">删除</a>
         </a-popconfirm>
        <a @click="onEdit(record)">编辑</a> </a-space>
-      </template></template>
+      </template>
+       <template v-else-if="column.dataIndex === 'type'">
+        <span v-for="item in PASSENGER_TYPE_ARRAY" :key="item.code">
+          <span v-if="item.code === record.type">
+            {{item.desc}}
+          </span>
+        </span>
+       </template>
+     </template>
     </a-table>
   <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
     <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 20 }">
@@ -48,12 +56,7 @@ import axios from 'axios';
 
 export default defineComponent({
   setup() {
-    const PASSENGER_TYPE_ARRAY = [
-      {code:'ADULT',desc:'成人'},
-      {code:'CHILD',desc:'儿童'},
-      {code:'INFANT',desc:'婴儿'},
-    ];
-
+    const PASSENGER_TYPE_ARRAY= window.PASSENGER_TYPE_ARRAY;
     const visible = ref(false);
     let passenger = ref({
       id: undefined,
