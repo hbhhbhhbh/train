@@ -1,7 +1,9 @@
 <template>
   <a-layout-header class="header">
     <div class="logo">
-
+      <router-link to="/welcome" >
+        hbh控台
+      </router-link>
     </div>
     <div style="float: right; color: white;">
       管理控制台
@@ -19,7 +21,7 @@
       </a-menu-item>
       <a-menu-item key="/about">
         <router-link to="/about">
-          <user-outlined />  $nbsp;关于
+          <user-outlined />  &nbsp; 关于
         </router-link>
       </a-menu-item>
 

@@ -1,3 +1,23 @@
+GET http://localhost:8000/business/hello
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-08T155608.200.json
+
+###
+
+GET http://localhost:8082/business/hello
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-08T155223.200.json
+
+###
+
 DELETE http://localhost:8000/member/passenger/delete/1854450594920665088
 Accept: application/json
 token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEwMzA1ODUsIm1vYmlsZSI6IjEzMzYyNzcwNzYzIiwiaWQiOjE4NTM5Nzc3NTM0Mzk4MzQxMTIsImV4cCI6MTczMTExNjk4NSwiaWF0IjoxNzMxMDMwNTg1fQ.S78jDAuMwsBbsryEXcd4aSIcC7duJ7-2ypvD6YGTTPc
@@ -665,26 +685,6 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2024-11-06T170228.200.json
-
-###
-
-GET http://localhost:8000/member/hello
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-06T170217.500.json
-
-###
-
-GET http://localhost:8080/member/count
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-06T165954.404.json
 
 ###
 
