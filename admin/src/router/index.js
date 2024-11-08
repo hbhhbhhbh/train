@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from "@/store";
-import {notification} from "ant-design-vue";
+import { notification } from "ant-design-vue";
 
 const routes = [
-
   {
     path: '/login',
     name: 'login',
@@ -13,21 +12,23 @@ const routes = [
     path: '/',
     name: 'main',
     component: () => import(/* webpackChunkName: "about" */ '../views/main.vue'),
-    mata:{
-      loginRequire:true
+    meta: {
+      loginRequire: true
     },
-    children:[{
-      path:'welcome',
-      component: () => import(/* webpackChunkName: "about"*/'../views/main/welcome.vue')
-    },
+    children: [
       {
-        path:'passenger',
+        path: 'welcome',
+        component: () => import(/* webpackChunkName: "about"*/'../views/main/welcome.vue')
+      },
+      {
+        path: 'passenger',
         component: () => import(/* webpackChunkName: "about"*/'../views/main/passenger.vue')
-      }]
+      }
+    ]
   },
   {
-    path:'',
-    redirect:'/welcome'
+    path: '',
+    redirect: '/welcome'
   }
 ]
 
@@ -35,12 +36,11 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-
 // 路由登录拦截
 router.beforeEach((to, from, next) => {
   // 要不要对meta.loginRequire属性做监控拦截
   if (to.matched.some(function (item) {
-    console.log(item, "是否需要登录校验：", item.meta.loginRequire || false);
+    console.log(item, "是否需要登录校验：", item.meta.loginRequire );
     return item.meta.loginRequire
   })) {
     const _member = store.state.member;

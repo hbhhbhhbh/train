@@ -2,34 +2,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 import store from "@/store";
 import {notification} from "ant-design-vue";
 
-const routes = [
-
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/the-login.vue')
+const routes = [{
+  path: '/login',
+  component: () => import('../views/the-login.vue')
+}, {
+  path: '/',
+  component: () => import('../views/main.vue'),
+  meta: {
+    loginRequire: true
   },
-  {
-    path: '/',
-    name: 'main',
-    component: () => import(/* webpackChunkName: "about" */ '../views/main.vue'),
-    mata:{
-      loginRequire:true
-    },
-    children:[{
-      path:'welcome',
-      component: () => import(/* webpackChunkName: "about"*/'../views/main/welcome.vue')
-    },
-      {
-        path:'passenger',
-        component: () => import(/* webpackChunkName: "about"*/'../views/main/passenger.vue')
-      }]
-  },
-  {
-    path:'',
-    redirect:'/welcome'
-  }
-]
+  children: [{
+    path: 'welcome',
+    component: () => import('../views/main/welcome.vue'),
+  }, {
+    path: 'passenger',
+    component: () => import('../views/main/passenger.vue'),
+  }]
+}, {
+  path: '',
+  redirect: '/welcome'
+}];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -40,7 +32,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // 要不要对meta.loginRequire属性做监控拦截
   if (to.matched.some(function (item) {
-    console.log(item, "是否需要登录校验：", item.meta.loginRequire || false);
+    console.log(item, "是否需要登录校验：", item.meta.loginRequire );
     return item.meta.loginRequire
   })) {
     const _member = store.state.member;
