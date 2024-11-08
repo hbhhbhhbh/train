@@ -15,8 +15,11 @@
      <template #bodyCell="{ column, record }">
       <template v-if="column.dataIndex === 'operation'">
         <a-space>
-          <a @click="onEdit(record)">编辑</a>
-        </a-space>
+          <a-popconfirm title="确定删除吗?" @confirm="onDelete(record)"
+          ok-text="确定" cancel-text="取消">
+            <a style="color:red">删除</a>
+        </a-popconfirm>
+       <a @click="onEdit(record)">编辑</a> </a-space>
       </template></template>
     </a-table>
   <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
@@ -122,6 +125,17 @@ export default defineComponent({
       visible.value = true;
 
     }
+    const onDelete = (record) => {
+      axios.delete("/member/passenger/delete/"+record.id, ).then((response) => {
+        let data = response.data;
+        if (data.success) {
+          notification.success({ description: '删除成功！' });
+          handleQuery({page: pagination.value.current, size: pagination.value.pageSize});
+        } else {
+          notification.error({ description: data.message });
+        }
+      });
+    }
     const showModal = () => {
       passenger.value={};
       visible.value = true;
@@ -153,6 +167,7 @@ export default defineComponent({
       handleTableChange,
       loading,
       onEdit,
+      onDelete
     };
   },
 });
