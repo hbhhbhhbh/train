@@ -1,8 +1,17 @@
 <template>
   <p>
-  <a-button type="primary" @click="showModal">新增</a-button>
+    <a-space>
+      <a-button type="primary" @click="handleQuery()">刷新</a-button>
+
+      <a-button type="primary" @click="showModal">新增</a-button>
+
+    </a-space>
   </p>
-  <a-table :columns="columns" :dataSource="passengers" :pagination="pagination"/>
+  <a-table :columns="columns"
+           :dataSource="passengers"
+           :pagination="pagination"
+           @change="handleTableChange"
+            :loading="loading"/>
   <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
     <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 20 }">
       <a-form-item label="姓名">
@@ -39,6 +48,8 @@ export default defineComponent({
       createTime: undefined,
       updateTime: undefined,
     });
+
+    let loading=ref(false);
     const pagination = reactive(
         {
           total:0,
@@ -65,22 +76,33 @@ export default defineComponent({
       },
     ];
     const handleQuery = (param) => {
+      if(!param)
+      {
+        param={page:1,size:pagination.pageSize};
+      }
+      loading.value=true;
       axios.get("/member/passenger/query-list", {
         params: {
           page: param.page,
           size: param.size
         }
       }).then((response) => {
+        loading.value=false;
         let data = response.data;
         if (data.success) {
           passengers.value = data.content.list;
+          pagination.current=param.page;
+          pagination.total= data.content.total;
         } else {
           notification.error({description: data.message});
         }
       });
     };
+    const handleTableChange = (pagination) => {
+      handleQuery({page: pagination.current, size: pagination.pageSize});
+    }
     onMounted(() => {
-      handleQuery({page: 1, size: 2});
+      handleQuery({page: 1, size: pagination.pageSize});
     }
     );
     const showModal = () => {
@@ -94,6 +116,7 @@ export default defineComponent({
         if (data.success) {
           notification.success({ description: '保存成功！' });
           visible.value = false;
+          handleQuery({page: pagination.current, size: pagination.pageSize});
         } else {
           notification.error({ description: data.message });
         }
@@ -108,6 +131,9 @@ export default defineComponent({
       passengers,
       columns,
       pagination,
+      handleQuery,
+      handleTableChange,
+      loading
     };
   },
 });

@@ -44,6 +44,7 @@ public class PassengerService
     {
 
         PassengerExample passengerexample=new PassengerExample();
+        passengerexample.setOrderByClause("id desc");
         PassengerExample.Criteria criteria= passengerexample.createCriteria();
         if(ObjectUtil.isNotNull(req.getMemberId()))
         {
