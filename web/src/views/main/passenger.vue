@@ -11,7 +11,14 @@
            :dataSource="passengers"
            :pagination="pagination"
            @change="handleTableChange"
-            :loading="loading"/>
+            :loading="loading">
+     <template #bodyCell="{ column, record }">
+      <template v-if="column.dataIndex === 'operation'">
+        <a-space>
+          <a @click="onEdit(record)">编辑</a>
+        </a-space>
+      </template></template>
+    </a-table>
   <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
     <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 20 }">
       <a-form-item label="姓名">
@@ -32,7 +39,7 @@
 </template>
 
 <script>
-import {defineComponent, ref, onMounted, reactive} from 'vue';
+import {defineComponent, ref, onMounted,} from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
 
@@ -50,14 +57,14 @@ export default defineComponent({
     });
 
     let loading=ref(false);
-    const pagination = reactive(
+    let pagination = ref(
         {
           total:0,
           current:1,
           pageSize:2,
         }
     )
-    const passengers=ref([]);
+    let passengers=ref([]);
     const columns= [
       {
         title: '姓名',
@@ -74,11 +81,16 @@ export default defineComponent({
         dataIndex: 'type',
         key: 'type',
       },
+      {
+        title: '操作',
+        dataIndex: 'operation',
+
+      },
     ];
     const handleQuery = (param) => {
       if(!param)
       {
-        param={page:1,size:pagination.pageSize};
+        param={page:1,size:pagination.value.pageSize};
       }
       loading.value=true;
       axios.get("/member/passenger/query-list", {
@@ -91,8 +103,8 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           passengers.value = data.content.list;
-          pagination.current=param.page;
-          pagination.total= data.content.total;
+          pagination.value.current=param.page;
+          pagination.value.total= data.content.total;
         } else {
           notification.error({description: data.message});
         }
@@ -102,10 +114,16 @@ export default defineComponent({
       handleQuery({page: pagination.current, size: pagination.pageSize});
     }
     onMounted(() => {
-      handleQuery({page: 1, size: pagination.pageSize});
+      handleQuery({page: 1, size: pagination.value.pageSize});
     }
     );
+    const onEdit = (record) => {
+      passenger.value = window.Tool.copy(record);
+      visible.value = true;
+
+    }
     const showModal = () => {
+      passenger.value={};
       visible.value = true;
     };
     const handleOk = () => {
@@ -116,7 +134,7 @@ export default defineComponent({
         if (data.success) {
           notification.success({ description: '保存成功！' });
           visible.value = false;
-          handleQuery({page: pagination.current, size: pagination.pageSize});
+          handleQuery({page: pagination.value.current, size: pagination.value.pageSize});
         } else {
           notification.error({ description: data.message });
         }
@@ -133,10 +151,13 @@ export default defineComponent({
       pagination,
       handleQuery,
       handleTableChange,
-      loading
+      loading,
+      onEdit,
     };
   },
 });
 </script>
 
 <style></style>
+<script setup>
+</script>
