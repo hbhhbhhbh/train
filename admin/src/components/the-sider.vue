@@ -14,6 +14,10 @@
         <router-link to="/about">
           <user-outlined /> &nbsp; 关于
         </router-link>
+      </a-menu-item><a-menu-item key="/station">
+        <router-link to="/station">
+          <user-outlined /> &nbsp; 车站
+        </router-link>
       </a-menu-item>
 
     </a-menu>
