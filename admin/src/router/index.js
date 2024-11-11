@@ -18,7 +18,7 @@ const routes = [
       },
       {
         path: 'station',
-        component: () => import(/* webpackChunkName: "about"*/'../views/main/station.vue')
+        component: () => import(/* webpackChunkName: "about"*/'../views/main/business/station.vue')
       }
     ]
   },

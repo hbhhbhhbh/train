@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class ServerGenerator {
-    static boolean readOnly = true;
+    static boolean readOnly = false;
     static String vuePath = "admin/src/views/main/";
     static String serverPath = "[module]/src/main/java/com/hbh/train/[module]/";
     static String pomPath = "generator/pom.xml";
@@ -51,13 +51,15 @@ public class ServerGenerator {
         DbUtil.url = connectionURL.getText();
         DbUtil.user = userId.getText();
         DbUtil.password = password.getText();
-
-        // 示例：表名 jiawa_test
+        System.out.println("db url: " + DbUtil.url);
+        System.out.println("db user: " + DbUtil.user);
+        System.out.println("db password: " + DbUtil.password);
+        // 示例：表名 hbh_test
         // Domain = JiawaTest
         String Domain = domainObjectName.getText();
-        // domain = jiawaTest
+        // domain = hbhTest
         String domain = Domain.substring(0, 1).toLowerCase() + Domain.substring(1);
-        // do_main = jiawa-test
+        // do_main = hbh-test
         String do_main = tableName.getText().replaceAll("_", "-");
         // 表中文名
         String tableNameCn = DbUtil.getTableComment(tableName.getText());
@@ -76,11 +78,11 @@ public class ServerGenerator {
         param.put("readOnly", readOnly);
         System.out.println("组装参数：" + param);
 
-        gen(Domain, param, "service", "service");
-        gen(Domain, param, "controller/admin", "adminController");
-        gen(Domain, param, "req", "saveReq");
-        gen(Domain, param, "req", "queryReq");
-        gen(Domain, param, "resp", "queryResp");
+//        gen(Domain, param, "service", "service");
+//        gen(Domain, param, "controller/admin", "adminController");
+//        gen(Domain, param, "req", "saveReq");
+//        gen(Domain, param, "req", "queryReq");
+//        gen(Domain, param, "resp", "queryResp");
 
         genVue(do_main, param);
     }

@@ -19,11 +19,15 @@ public class DbUtil {
     public static Connection getConnection() {
         Connection conn = null;
         try {
+            System.out.println("db1 url: " + DbUtil.url);
+            System.out.println("db1 user: " + DbUtil.user);
+            System.out.println("db1 password: " + DbUtil.password);
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = DbUtil.url;
             String user = DbUtil.user;
             String password = DbUtil.password;
             conn = DriverManager.getConnection(url, user, password);
+            System.out.println("conn " + conn);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
