@@ -44,9 +44,13 @@ public class TrainCarriageService {
 
     public PageResp<TrainCarriageQueryResp> queryList(TrainCarriageQueryReq req) {
         TrainCarriageExample trainCarriageExample = new TrainCarriageExample();
-        trainCarriageExample.setOrderByClause("id desc");
+        trainCarriageExample.setOrderByClause("train_code asc,`index` asc");
         TrainCarriageExample.Criteria criteria = trainCarriageExample.createCriteria();
+        if(ObjectUtil.isNotNull(req.getTrainCode())&&!req.getTrainCode().isEmpty())
+        {
+            criteria.andTrainCodeEqualTo(req.getTrainCode());
 
+        }
         LOG.info("查询页码：{}", req.getPage());
         LOG.info("每页条数：{}", req.getSize());
         PageHelper.startPage(req.getPage(), req.getSize());
