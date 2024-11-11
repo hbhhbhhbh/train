@@ -1,0 +1,12 @@
+package com.hbh.train.business.req;
+
+import com.hbh.train.common.req.PageReq;
+
+public class TrainStationQueryReq extends PageReq {
+
+    @Override
+    public String toString() {
+        return "TrainStationQueryReq{" +
+                "} " + super.toString();
+    }
+}
