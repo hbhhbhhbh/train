@@ -1,15 +1,16 @@
 package com.hbh.train.business.controller.admin;
 
-import com.hbh.train.common.context.LoginMemberContext;
-import com.hbh.train.common.resp.CommonResp;
-import com.hbh.train.common.resp.PageResp;
 import com.hbh.train.business.req.TrainQueryReq;
 import com.hbh.train.business.req.TrainSaveReq;
 import com.hbh.train.business.resp.TrainQueryResp;
 import com.hbh.train.business.service.TrainService;
+import com.hbh.train.common.resp.CommonResp;
+import com.hbh.train.common.resp.PageResp;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/train")
@@ -35,5 +36,11 @@ public class TrainAdminController {
         trainService.delete(id);
         return new CommonResp<>();
     }
+    @GetMapping("/query-all")
+    public CommonResp<List<TrainQueryResp>> queryAll() {
+        List<TrainQueryResp> list = trainService.queryAll();
+        return new CommonResp<>(list);
+    }
+
 
 }
