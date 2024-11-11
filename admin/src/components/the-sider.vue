@@ -14,12 +14,22 @@
         <router-link to="/about">
           <user-outlined /> &nbsp; 关于
         </router-link>
-      </a-menu-item><a-menu-item key="/station">
+      </a-menu-item>
+      <a-menu-item key="/station">
         <router-link to="/station">
           <user-outlined /> &nbsp; 车站
         </router-link>
       </a-menu-item>
-
+      <a-menu-item key="/train-station">
+        <router-link to="/train-station">
+          <user-outlined /> &nbsp; 火车车站
+        </router-link>
+      </a-menu-item>
+      <a-menu-item key="/train">
+      <router-link to="/train">
+        <user-outlined /> &nbsp; 火车管理
+      </router-link>
+    </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>
