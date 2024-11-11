@@ -1,15 +1,16 @@
 package com.hbh.train.business.controller.admin;
 
-import com.hbh.train.common.context.LoginMemberContext;
-import com.hbh.train.common.resp.CommonResp;
-import com.hbh.train.common.resp.PageResp;
 import com.hbh.train.business.req.StationQueryReq;
 import com.hbh.train.business.req.StationSaveReq;
 import com.hbh.train.business.resp.StationQueryResp;
 import com.hbh.train.business.service.StationService;
+import com.hbh.train.common.resp.CommonResp;
+import com.hbh.train.common.resp.PageResp;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/station")
@@ -29,7 +30,11 @@ public class StationAdminController {
         PageResp<StationQueryResp> list = stationService.queryList(req);
         return new CommonResp<>(list);
     }
-
+    @GetMapping("/query-all")
+    public CommonResp<List<StationQueryResp>> queryAll() {
+        List<StationQueryResp> list =stationService.queryAll();
+        return new CommonResp<>(list);
+    }
     @DeleteMapping("/delete/{id}")
     public CommonResp<Object> delete(@PathVariable Long id) {
         stationService.delete(id);

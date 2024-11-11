@@ -5,14 +5,14 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hbh.train.common.resp.PageResp;
-import com.hbh.train.common.util.SnowUtil;
 import com.hbh.train.business.domain.Station;
 import com.hbh.train.business.domain.StationExample;
 import com.hbh.train.business.mapper.StationMapper;
 import com.hbh.train.business.req.StationQueryReq;
 import com.hbh.train.business.req.StationSaveReq;
 import com.hbh.train.business.resp.StationQueryResp;
+import com.hbh.train.common.resp.PageResp;
+import com.hbh.train.common.util.SnowUtil;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +63,13 @@ public class StationService {
         pageResp.setList(list);
         return pageResp;
     }
+    public List<StationQueryResp> queryAll() {
+        StationExample stationExample = new StationExample();
+        stationExample.setOrderByClause("name_pinyin asc");
+        List<Station> trainList = stationMapper.selectByExample(stationExample);
 
+        return BeanUtil.copyToList(trainList, StationQueryResp.class);
+    }
     public void delete(Long id) {
         stationMapper.deleteByPrimaryKey(id);
     }
