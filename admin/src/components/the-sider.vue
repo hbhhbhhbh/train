@@ -59,7 +59,7 @@
 
         <a-menu-item key="/business/daily-train">
           <router-link to="/business/daily-train">
-            <user-outlined /> &nbsp; 火车管理
+            <user-outlined /> &nbsp; 每日车次
           </router-link>
         </a-menu-item>
 
