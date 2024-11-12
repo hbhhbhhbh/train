@@ -6,3 +6,15 @@ Accept: application/json
 ###
 GET http://localhost:8000/business/admin/train/gen-seat/G33
 Accept: application/json
+###
+POST http://localhost:8000/batch/admin/job/add
+Content-Type: application/json
+
+{
+  "name": "com.hbh.train.batch.job.TestJob",
+  "jobGroupName": "default",
+  "cronExpression": "*/2 * * * * ?",
+  "desc": "test job"
+}
+
+###
