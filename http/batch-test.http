@@ -1,0 +1,8 @@
+GET http://localhost:8083/batch/hello
+Accept: application/json
+###
+GET http://localhost:8000/business/hello
+Accept: application/json
+###
+GET http://localhost:8000/business/admin/train/gen-seat/G33
+Accept: application/json
