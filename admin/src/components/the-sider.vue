@@ -49,6 +49,21 @@
           </router-link>
         </a-menu-item>
       </a-sub-menu>
+      <a-sub-menu key="business">
+        <template #title>
+          <span>
+            <UnorderedListOutlined />
+            业务管理
+          </span>
+        </template>
+
+        <a-menu-item key="/business/daily-train">
+          <router-link to="/business/daily-train">
+            <user-outlined /> &nbsp; 火车管理
+          </router-link>
+        </a-menu-item>
+
+      </a-sub-menu>
       <a-sub-menu key="batch">
         <template #title>
           <span>
@@ -58,7 +73,7 @@
         </template>
         <a-menu-item key="/batch/job">
           <router-link to="/batch/job">
-            <MenuUnfoldOutlined /> &nbsp; 任务管理
+            <user-outlined /> &nbsp; 任务管理
           </router-link>
         </a-menu-item>
       </a-sub-menu>
