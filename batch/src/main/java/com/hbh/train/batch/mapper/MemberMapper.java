@@ -2,8 +2,9 @@ package com.hbh.train.batch.mapper;
 
 import com.hbh.train.batch.domain.Member;
 import com.hbh.train.batch.domain.MemberExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface MemberMapper {
     long countByExample(MemberExample example);

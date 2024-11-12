@@ -1,6 +1,6 @@
-//package com.hbh.train.batch.config;// package com.jiawa.train.batch.config;
+package com.hbh.train.batch.config;// package com.jiawa.train.batch.config;
 //
-// import com.hbh.train.batch.job.TestJob;
+// import com.jiawa.train.batch.job.TestJob;
 // import org.quartz.*;
 // import org.springframework.context.annotation.Bean;
 // import org.springframework.context.annotation.Configuration;
