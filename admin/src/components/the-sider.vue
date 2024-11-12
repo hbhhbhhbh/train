@@ -40,6 +40,11 @@
           <user-outlined /> &nbsp; 火车座位管理
         </router-link>
       </a-menu-item>
+      <a-menu-item key="/batch/job">
+        <router-link to="/batch/job">
+          <user-outlined /> &nbsp; 定时任务
+        </router-link>
+      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>

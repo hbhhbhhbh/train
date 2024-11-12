@@ -36,6 +36,11 @@ const routes = [
         path: 'train-seat',
         component: () => import(/* webpackChunkName: "about"*/'../views/main/business/train-seat.vue')
       }
+      ,
+      {
+        path: 'batch/job',
+        component: () => import(/* webpackChunkName: "about"*/'../views/main/batch/job.vue')
+      }
     ]
   },
   {
