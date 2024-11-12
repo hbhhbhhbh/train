@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hbh.train.business.enums.SeatColEnum;
 import com.hbh.train.common.resp.PageResp;
 import com.hbh.train.common.util.SnowUtil;
 import com.hbh.train.business.domain.DailyTrainCarriage;
@@ -30,6 +31,10 @@ public class DailyTrainCarriageService {
 
     public void save(DailyTrainCarriageSaveReq req) {
         DateTime now = DateTime.now();
+        List<SeatColEnum>seatColEnums=SeatColEnum.getColsByType(req.getSeatType());
+        req.setColCount(seatColEnums.size());
+        req.setSeatCount(req.getColCount()*req.getRowCount());
+
         DailyTrainCarriage dailyTrainCarriage = BeanUtil.copyProperties(req, DailyTrainCarriage.class);
         if (ObjectUtil.isNull(dailyTrainCarriage.getId())) {
             dailyTrainCarriage.setId(SnowUtil.getSnowflakeNextId());
