@@ -44,9 +44,17 @@ public class DailyTrainCarriageService {
 
     public PageResp<DailyTrainCarriageQueryResp> queryList(DailyTrainCarriageQueryReq req) {
         DailyTrainCarriageExample dailyTrainCarriageExample = new DailyTrainCarriageExample();
-        dailyTrainCarriageExample.setOrderByClause("id desc");
+        dailyTrainCarriageExample.setOrderByClause("date desc ,train_code asc,`index` asc");
         DailyTrainCarriageExample.Criteria criteria = dailyTrainCarriageExample.createCriteria();
+        if(ObjectUtil.isNotNull(req.getDate()))
+        {
+            criteria.andDateEqualTo(req.getDate());
+        }
+        if(ObjectUtil.isNotNull(req.getCode())&&!req.getCode().isEmpty())
+        {
+            criteria.andTrainCodeEqualTo(req.getCode());
 
+        }
         LOG.info("查询页码：{}", req.getPage());
         LOG.info("每页条数：{}", req.getSize());
         PageHelper.startPage(req.getPage(), req.getSize());
