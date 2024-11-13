@@ -18,21 +18,21 @@ public class DailyTrainCarriageQueryReq extends PageReq {
         this.date = date;
     }
 
-    public String getCode() {
-        return code;
+    public String gettrainCode() {
+        return trainCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void settrainCode(String trainCode) {
+        this.trainCode = trainCode;
     }
 
     @Override
     public String toString() {
         return "DailyTrainCarriageQueryReq{" +
                 "date=" + date +
-                ", code='" + code + '\'' +
+                ", trainCode='" + trainCode + '\'' +
                 "} " + super.toString();
     }
 
-    private String code;
+    private String trainCode;
 }

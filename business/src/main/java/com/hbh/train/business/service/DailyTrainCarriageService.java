@@ -59,9 +59,9 @@ public class DailyTrainCarriageService {
         {
             criteria.andDateEqualTo(req.getDate());
         }
-        if(ObjectUtil.isNotNull(req.getCode())&&!req.getCode().isEmpty())
+        if(ObjectUtil.isNotEmpty(req.gettrainCode()))
         {
-            criteria.andTrainCodeEqualTo(req.getCode());
+            criteria.andTrainCodeEqualTo(req.gettrainCode());
 
         }
         LOG.info("查询页码：{}", req.getPage());
