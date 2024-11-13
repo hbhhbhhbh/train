@@ -60,6 +60,7 @@ POST http://localhost:8000/batch/admin/job/run
 Content-Type: application/json
 
 {
-"name": "com.hbh.train.batch.job.TestJob2",
-"jobGroupName": "default"
+"name": "com.hbh.train.batch.job.DailyTrainJob",
+"jobGroupName": "DEFAULT"
+
 }

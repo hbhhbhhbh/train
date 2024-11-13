@@ -1,3 +1,153 @@
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 79
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.DailyTrainJob",
+"jobGroupName": "DEFAULT"
+
+}
+
+<> 2024-11-13T090706.200.json
+
+###
+
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 108
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.DailyTrainJob",
+"group": "DEFAULT",
+  "cronExpression": "*/5 * * * * ?"
+}
+
+<> 2024-11-13T090609.200.json
+
+###
+
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 102
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.TestJob",
+"group": "DEFAULT",
+  "cronExpression": "*/5 * * * * ?"
+}
+
+<> 2024-11-13T090319.200.json
+
+###
+
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 103
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.TestJob2",
+"group": "DEFAULT",
+  "cronExpression": "*/5 * * * * ?"
+}
+
+<> 2024-11-13T090301.200.json
+
+###
+
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 103
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.TestJob2",
+"group": "Default",
+  "cronExpression": "*/5 * * * * ?"
+}
+
+<> 2024-11-13T090038.200.json
+
+###
+
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 103
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.TestJob2",
+"group": "default",
+  "cronExpression": "*/5 * * * * ?"
+}
+
+<> 2024-11-13T085723.200.json
+
+###
+
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.TestJob2",
+"group": "default"
+}
+
+<> 2024-11-13T085632.200.json
+
+###
+
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 73
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.TestJob2",
+"jobGroupName": "default"
+}
+
+<> 2024-11-13T084550.200.json
+
+###
+
+POST http://localhost:8000/batch/admin/job/run
+Content-Type: application/json
+Content-Length: 73
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"name": "com.hbh.train.batch.job.TestJob2",
+"jobGroupName": "default"
+}
+
+<> 2024-11-13T084025.200.json
+
+###
+
 POST http://localhost:8000/batch/admin/job/delete
 Content-Type: application/json
 Content-Length: 78
@@ -610,106 +760,6 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2024-11-11T153255.200.json
-
-###
-
-GET http://localhost:8000/business/admin/train/gen-seat/G33
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-11T153217.200.json
-
-###
-
-GET http://localhost:8000/business/admin/train/gen-seat/G33
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-11T153159.200.json
-
-###
-
-GET http://localhost:8000/business/admin/train/gen-seat/12
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-11T153106.404.json
-
-###
-
-GET http://localhost:8000/business/admin/train/gen-seat/12
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-11T153030.404.json
-
-###
-
-GET http://localhost:8000/business/admin/train/gen-seat/12
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-11T152849.404.json
-
-###
-
-GET http://localhost:8000/business/hello
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-08T155608.200.json
-
-###
-
-GET http://localhost:8082/business/hello
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-08T155223.200.json
-
-###
-
-DELETE http://localhost:8000/member/passenger/delete/1854450594920665088
-Accept: application/json
-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEwMzA1ODUsIm1vYmlsZSI6IjEzMzYyNzcwNzYzIiwiaWQiOjE4NTM5Nzc3NTM0Mzk4MzQxMTIsImV4cCI6MTczMTExNjk4NSwiaWF0IjoxNzMxMDMwNTg1fQ.S78jDAuMwsBbsryEXcd4aSIcC7duJ7-2ypvD6YGTTPc
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-08T095114.200.json
-
-###
-
-POST http://localhost:8000/member/passenger/save
-Content-Type: application/json
-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEwMzA1ODUsIm1vYmlsZSI6IjEzMzYyNzcwNzYzIiwiaWQiOjE4NTM5Nzc3NTM0Mzk4MzQxMTIsImV4cCI6MTczMTExNjk4NSwiaWF0IjoxNzMxMDMwNTg1fQ.S78jDAuMwsBbsryEXcd4aSIcC7duJ7-2ypvD6YGTTPc
-Content-Length: 56
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-
-"name": "test",
-  "idCard": "123321",
-  "type": "1"
-}
-
-<> 2024-11-08T094954.200.json
 
 ###
 
