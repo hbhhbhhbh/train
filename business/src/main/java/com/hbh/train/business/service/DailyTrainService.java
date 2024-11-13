@@ -26,6 +26,10 @@ import java.util.List;
 @Service
 public class DailyTrainService {
     @Resource
+    DailyTrainStationService dailyTrainStation;
+    @Resource
+    DailyTrainCarriageService dailyTrainCarriage;
+    @Resource
     TrainService trainService;
     private static final Logger LOG = LoggerFactory.getLogger(DailyTrainService.class);
 
@@ -97,11 +101,13 @@ public class DailyTrainService {
         {
             //删除该车次已有数据
             genDailyTrain(date, train);
+
         }
 
     }
 
     public void genDailyTrain(Date date, Train train) {
+        LOG.info("生成每日车次信息，日期：{}，车次：{}", date, train.getCode());
         DailyTrainExample dailyTrainExample = new DailyTrainExample();
         dailyTrainExample.createCriteria()
                 .andDateEqualTo(date)
@@ -115,5 +121,10 @@ public class DailyTrainService {
         dailyTrain.setUpdateTime(now);
         dailyTrain.setDate(date);
         dailyTrainMapper.insert(dailyTrain);
+
+        //生成车站
+        dailyTrainStation.genDaily(date, train.getCode());
+        dailyTrainCarriage.genDaily(date, train.getCode());
+        LOG.info("生成每日车次信息结束，日期：{}，车次：{}", date, train.getCode());
     }
 }
