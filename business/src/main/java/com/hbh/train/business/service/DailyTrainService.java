@@ -19,6 +19,7 @@ import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,9 @@ public class DailyTrainService {
     DailyTrainSeatService dailyTrainSeat;
     @Resource
     TrainService trainService;
+
+    @Resource
+    DailyTrainTicketService dailyTrainTicketService;
     private static final Logger LOG = LoggerFactory.getLogger(DailyTrainService.class);
 
     @Resource
@@ -108,6 +112,7 @@ public class DailyTrainService {
 
     }
 
+    @Transactional
     public void genDailyTrain(Date date, Train train) {
         LOG.info("生成每日车次信息，日期：{}，车次：{}", date, train.getCode());
         DailyTrainExample dailyTrainExample = new DailyTrainExample();
@@ -128,6 +133,7 @@ public class DailyTrainService {
         dailyTrainStation.genDaily(date, train.getCode());
         dailyTrainCarriage.genDaily(date, train.getCode());
         dailyTrainSeat.genDaily(date, train.getCode());
+        dailyTrainTicketService.genDaily(date, train.getCode());
         LOG.info("生成每日车次信息结束，日期：{}，车次：{}", date, train.getCode());
     }
 }

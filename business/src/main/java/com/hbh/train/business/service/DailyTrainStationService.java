@@ -19,6 +19,7 @@ import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -79,6 +80,7 @@ public class DailyTrainStationService {
     public void delete(Long id) {
         dailyTrainStationMapper.deleteByPrimaryKey(id);
     }
+    @Transactional
     public void genDaily(Date date, String code)
     {
         LOG.info("生成每日车次信息，日期：{}，车次：{}", date, code);
