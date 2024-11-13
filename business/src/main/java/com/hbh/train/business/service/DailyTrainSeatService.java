@@ -78,7 +78,7 @@ public class DailyTrainSeatService {
     }
     public void genDaily(Date date, String code)
     {
-        LOG.info("生成每日车厢信息，日期：{}，车厢：{}", date, code);
+        LOG.info("生成每日车座信息，日期：{}，车座：{}", date, code);
         DailyTrainSeatExample dailyTrainSeatExample = new DailyTrainSeatExample();
         dailyTrainSeatExample.createCriteria()
                 .andDateEqualTo(date)
@@ -89,7 +89,7 @@ public class DailyTrainSeatService {
         List<TrainSeat> trainSeats = trainSeatService.selectByTrainCode(code);
         if (CollUtil.isEmpty(trainSeats)
         ) {
-            LOG.info("车厢信息为空，不生成每日车厢信息，日期：{}，车次：{}", date, code);
+            LOG.info("车座信息为空，不生成每日车座信息，日期：{}，车次：{}", date, code);
             return;
         }
         for(TrainSeat trainSeat: trainSeats)
@@ -103,5 +103,15 @@ public class DailyTrainSeatService {
             dailyTrainSeat.setSell(sell);
             dailyTrainSeatMapper.insert(dailyTrainSeat);
         }
+    }
+    public int countSeats(Date date ,String code,String seatType)
+    {
+        DailyTrainSeatExample dailyTrainSeatExample = new DailyTrainSeatExample();
+        dailyTrainSeatExample.createCriteria()
+                .andDateEqualTo(date)
+                .andTrainCodeEqualTo(code)
+                .andSeatTypeEqualTo(seatType);
+        long l = dailyTrainSeatMapper.countByExample(dailyTrainSeatExample);
+        return l==0L?-1:(int)l;
     }
 }
