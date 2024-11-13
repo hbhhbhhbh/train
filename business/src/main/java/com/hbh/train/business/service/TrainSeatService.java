@@ -33,6 +33,7 @@ public class TrainSeatService {
     private TrainSeatMapper trainSeatMapper;
     @Resource
     private TrainCarriageService trainCarriageService;
+
     public void save(TrainSeatSaveReq req) {
         DateTime now = DateTime.now();
         TrainSeat trainSeat = BeanUtil.copyProperties(req, TrainSeat.class);
@@ -114,5 +115,13 @@ public class TrainSeatService {
         }
 
 
+    }
+
+    public List<TrainSeat> selectByTrainCode(String code){
+        TrainSeatExample trainSeatExample = new TrainSeatExample();
+        trainSeatExample.setOrderByClause("`id` asc");
+        TrainSeatExample.Criteria criteria = trainSeatExample.createCriteria();
+        criteria.andTrainCodeEqualTo(code);
+        return trainSeatMapper.selectByExample(trainSeatExample);
     }
 }
