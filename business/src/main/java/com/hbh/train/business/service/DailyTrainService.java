@@ -25,6 +25,7 @@ import java.util.List;
 
 @Service
 public class DailyTrainService {
+    @Resource
     TrainService trainService;
     private static final Logger LOG = LoggerFactory.getLogger(DailyTrainService.class);
 
@@ -105,6 +106,7 @@ public class DailyTrainService {
         dailyTrainExample.createCriteria()
                 .andDateEqualTo(date)
                 .andCodeEqualTo(train.getCode());
+        dailyTrainMapper.deleteByExample(dailyTrainExample);
         //生成车次数据
         DateTime now=DateTime.now();
         DailyTrain dailyTrain = BeanUtil.copyProperties(train, DailyTrain.class);
