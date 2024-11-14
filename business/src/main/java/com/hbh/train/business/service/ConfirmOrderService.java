@@ -8,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hbh.train.business.domain.ConfirmOrder;
 import com.hbh.train.business.domain.ConfirmOrderExample;
+import com.hbh.train.business.domain.DailyTrainTicket;
 import com.hbh.train.business.enums.ConfirmOrderStatusEnum;
 import com.hbh.train.business.mapper.ConfirmOrderMapper;
 import com.hbh.train.business.req.ConfirmOrderDoReq;
@@ -17,19 +18,19 @@ import com.hbh.train.common.context.LoginMemberContext;
 import com.hbh.train.common.resp.PageResp;
 import com.hbh.train.common.util.SnowUtil;
 import jakarta.annotation.Resource;
-import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class ConfirmOrderService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ConfirmOrderService.class);
-
+    @Resource
+    private DailyTrainTicketService dailyTrainTicketService;
     @Resource
     private ConfirmOrderMapper confirmOrderMapper;
 
@@ -72,16 +73,21 @@ public class ConfirmOrderService {
     public void delete(Long id) {
         confirmOrderMapper.deleteByPrimaryKey(id);
     }
-    public void doConfirm(@Valid @RequestBody  ConfirmOrderDoReq req) {
+    public void doConfirm(ConfirmOrderDoReq req) {
         // 省略业务数据校验，如：车次是否存在，余票是否存在，车次是否在有效期内，tickets条数>0，同乘客同车次是否已买过
         ConfirmOrder confirmOrder = new ConfirmOrder();
         DateTime now = DateTime.now();
         confirmOrder.setId(SnowUtil.getSnowflakeNextId());
         confirmOrder.setMemberId(LoginMemberContext.getId());
-        confirmOrder.setDate(req.getDate());
-        confirmOrder.setTrainCode(req.getTrainCode());
-        confirmOrder.setStart(req.getStart());
-        confirmOrder.setEnd(req.getEnd());
+        Date date=req.getDate();
+
+        confirmOrder.setDate(date);
+        String traincode=req.getTrainCode();
+        confirmOrder.setTrainCode(traincode);
+        String start=req.getStart();
+        confirmOrder.setStart(start);
+        String end=req.getEnd();
+        confirmOrder.setEnd(end);
         confirmOrder.setDailyTrainTicketId(req.getDailyTrainTicketId());
         confirmOrder.setStatus(ConfirmOrderStatusEnum.INIT.getCode());
         confirmOrder.setCreateTime(now);
@@ -90,9 +96,10 @@ public class ConfirmOrderService {
 
         // 保存确认订单表，状态初始
         confirmOrderMapper.insert(confirmOrder);
-                // 查出余票记录，需要得到真实的库存
-
-                // 扣减余票数量，并判断余票是否足够
+        // 查出余票记录，需要得到真实的库存
+        DailyTrainTicket dailyTrainTicket = dailyTrainTicketService.selectByUnique(date, traincode, start, end);
+        LOG.info("余票:{}", dailyTrainTicket);
+        // 扣减余票数量，并判断余票是否足够
 
                 // 选座
 
