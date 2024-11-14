@@ -177,7 +177,7 @@ export default defineComponent({
     let mounted=1;
   const toOrder=(record)=>{
     dailyTrainTicket.value=Tool.copy(record);
-    SessionStorage.set('dailyTrainTicket',dailyTrainTicket.value);
+    SessionStorage.set(SESSION_ORDER,dailyTrainTicket.value);
     router.push("/order");
   }
     const handleQuery = (param) => {
@@ -206,6 +206,7 @@ export default defineComponent({
           size: pagination.value.pageSize
         };
       }
+      SessionStorage.set(SESSION_TICKET_PARAMS, params.value);
       loading.value = true;
       axios.get("/business/daily-train-ticket/query-list", {
         params: {
@@ -239,6 +240,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
+      params.value=SessionStorage.get(SESSION_TICKET_PARAMS)||{};
       handleQuery({
         page: 1,
         size: pagination.value.pageSize
