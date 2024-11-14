@@ -15,6 +15,7 @@
            :loading="loading">
     <template #bodyCell="{ column, record }">
       <template v-if="column.dataIndex === 'operation'">
+        <a-button type="primary" @click="toOrder(record)">购买</a-button>
       </template>
       <template v-else-if="column.dataIndex === 'station'">
         {{record.start}}<br/>
@@ -79,7 +80,7 @@ import {notification} from "ant-design-vue";
 
 import axios from "axios";
 import StationSelectView from "@/components/station-select.vue";
-
+import router from "@/router";
 import dayjs from "dayjs";
 
 export default defineComponent({
@@ -167,10 +168,18 @@ export default defineComponent({
         dataIndex: 'yw',
         key: 'yw',
       }
-
+      ,
+      {
+        title:'操作',
+        dataIndex: 'operation'
+      }
     ];
     let mounted=1;
-
+  const toOrder=(record)=>{
+    dailyTrainTicket.value=Tool.copy(record);
+    SessionStorage.set('dailyTrainTicket',dailyTrainTicket.value);
+    router.push("/order");
+  }
     const handleQuery = (param) => {
       if(mounted===0){
         if(Tool.isEmpty(params.value.date))
@@ -247,7 +256,8 @@ export default defineComponent({
       handleQuery,
       loading,
       params,
-      calDuration
+      calDuration,
+      toOrder
     };
   },
 });
