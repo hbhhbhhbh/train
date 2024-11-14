@@ -2,7 +2,9 @@ package com.hbh.train.business.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -10,11 +12,16 @@ import com.hbh.train.business.domain.ConfirmOrder;
 import com.hbh.train.business.domain.ConfirmOrderExample;
 import com.hbh.train.business.domain.DailyTrainTicket;
 import com.hbh.train.business.enums.ConfirmOrderStatusEnum;
+import com.hbh.train.business.enums.SeatColEnum;
+import com.hbh.train.business.enums.SeatTypeEnum;
 import com.hbh.train.business.mapper.ConfirmOrderMapper;
 import com.hbh.train.business.req.ConfirmOrderDoReq;
 import com.hbh.train.business.req.ConfirmOrderQueryReq;
+import com.hbh.train.business.req.ConfirmOrderTicketReq;
 import com.hbh.train.business.resp.ConfirmOrderQueryResp;
 import com.hbh.train.common.context.LoginMemberContext;
+import com.hbh.train.common.exception.BusinessException;
+import com.hbh.train.common.exception.BusinessExceptionEnum;
 import com.hbh.train.common.resp.PageResp;
 import com.hbh.train.common.util.SnowUtil;
 import jakarta.annotation.Resource;
@@ -22,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -80,7 +88,7 @@ public class ConfirmOrderService {
         confirmOrder.setId(SnowUtil.getSnowflakeNextId());
         confirmOrder.setMemberId(LoginMemberContext.getId());
         Date date=req.getDate();
-
+        List<ConfirmOrderTicketReq>tickets=req.getTickets();
         confirmOrder.setDate(date);
         String traincode=req.getTrainCode();
         confirmOrder.setTrainCode(traincode);
@@ -92,16 +100,58 @@ public class ConfirmOrderService {
         confirmOrder.setStatus(ConfirmOrderStatusEnum.INIT.getCode());
         confirmOrder.setCreateTime(now);
         confirmOrder.setUpdateTime(now);
-        confirmOrder.setTickets(JSON.toJSONString(req.getTickets()));
+        confirmOrder.setTickets(JSON.toJSONString(tickets));
 
         // 保存确认订单表，状态初始
         confirmOrderMapper.insert(confirmOrder);
         // 查出余票记录，需要得到真实的库存
         DailyTrainTicket dailyTrainTicket = dailyTrainTicketService.selectByUnique(date, traincode, start, end);
         LOG.info("余票:{}", dailyTrainTicket);
-        // 扣减余票数量，并判断余票是否足够
+        // 扣减余票数量，并判断余票是否足够,这只是测试判断，不是真实选票
+        reduceTicket(req, dailyTrainTicket);
+        //计算相对第一个座位的偏离值
+        //比如选择C1，D2，偏移值为[0,5]
+        ConfirmOrderTicketReq ticketreq0=tickets.get(0);
+        if(StrUtil.isNotBlank(ticketreq0.getSeat()))
+        {
+            LOG.info("有选座");
+            List<SeatColEnum> colsByType = SeatColEnum.getColsByType(ticketreq0.getSeatTypeCode());
+            LOG.info("座位类型：{}",colsByType);
 
-                // 选座
+            //组成和前端一样的列表，用于作参照的座位列表
+            List<String>referSeatList=new ArrayList<>();
+            for(int i=1;i<=2;i++)
+            {
+                for(SeatColEnum col:colsByType)
+                {
+                    referSeatList.add(col.getCode()+i);
+                }
+            }
+            LOG.info("参照座位列表：{}",referSeatList);
+            //计算绝对偏移值
+            List<Integer> SeatAbsoluteOffsetList=new ArrayList<>();
+            for(ConfirmOrderTicketReq ticketReq:tickets){
+                String seat = ticketReq.getSeat();
+                int index = referSeatList.indexOf(seat);
+                SeatAbsoluteOffsetList.add(index);
+            }
+            LOG.info("绝对偏移值：{}",SeatAbsoluteOffsetList);
+            //计算相对偏移值
+            List<Integer>SeatRelativeOffsetList=new ArrayList<>();
+            SeatRelativeOffsetList.add(0);
+            for(int i=0;i<SeatAbsoluteOffsetList.size();i++)
+            {
+                int i1 = SeatAbsoluteOffsetList.get(i) - SeatAbsoluteOffsetList.get(0);
+                SeatRelativeOffsetList.add(i1);
+            }
+            LOG.info("相对偏移值：{}",SeatRelativeOffsetList);
+
+        }
+        else {
+            LOG.info("未选座");
+        }
+
+        // 选座
 
                 // 一个车箱一个车箱的获取座位数据
 
@@ -113,5 +163,47 @@ public class ConfirmOrderService {
                 // 余票详情表修改余票；
                 // 为会员增加购票记录
                 // 更新确认订单为成功
+    }
+
+    private static void reduceTicket(ConfirmOrderDoReq req, DailyTrainTicket dailyTrainTicket) {
+        for(ConfirmOrderTicketReq ticketreq: req.getTickets())
+        {
+            String seatTypeCode = ticketreq.getSeatTypeCode();
+            SeatTypeEnum seatTypeEnum = EnumUtil.getBy(SeatTypeEnum::getCode, seatTypeCode);
+            switch(seatTypeEnum) {
+                case YDZ ->{
+                    int countLeft = dailyTrainTicket.getYdz()-1;
+                    if(countLeft<0)
+                    {
+                        throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);
+                    }
+                    dailyTrainTicket.setYdz(countLeft);
+                }
+                case EDZ ->{
+                    int countLeft = dailyTrainTicket.getEdz()-1;
+                    if(countLeft<0)
+                    {
+                        throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);
+                    }
+                    dailyTrainTicket.setEdz(countLeft);
+                }
+                case RW ->{
+                    int countLeft = dailyTrainTicket.getRw()-1;
+                    if(countLeft<0)
+                    {
+                        throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);
+                    }
+                    dailyTrainTicket.setRw(countLeft);
+                }
+                case YW ->{
+                    int countLeft = dailyTrainTicket.getYw()-1;
+                    if(countLeft<0)
+                    {
+                        throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);
+                    }
+                    dailyTrainTicket.setYw(countLeft);
+                }
+            }
+        }
     }
 }
