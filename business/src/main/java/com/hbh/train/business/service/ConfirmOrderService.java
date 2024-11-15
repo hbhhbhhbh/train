@@ -1,6 +1,7 @@
 package com.hbh.train.business.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -138,7 +139,7 @@ public class ConfirmOrderService {
             LOG.info("绝对偏移值：{}",SeatAbsoluteOffsetList);
             //计算相对偏移值
             List<Integer>SeatRelativeOffsetList=new ArrayList<>();
-            SeatRelativeOffsetList.add(0);
+
             for(int i=0;i<SeatAbsoluteOffsetList.size();i++)
             {
                 int i1 = SeatAbsoluteOffsetList.get(i) - SeatAbsoluteOffsetList.get(0);
@@ -189,18 +190,67 @@ public class ConfirmOrderService {
             LOG.info("车厢信息：{}",dailyTrainCarriage.getIndex());
             // 获取座位数据
             List<DailyTrainSeat> dailyTrainSeats = dailyTrainSeatService.selectByCarriage(date, trainCode, dailyTrainCarriage.getIndex());
-            LOG.info("座位信息：{}",dailyTrainSeats);
+            LOG.info("车厢{}座位数信息：{}",dailyTrainCarriage.getIndex(),dailyTrainSeats.size());
+
             for(DailyTrainSeat dailyTrainSeat:dailyTrainSeats){
+                String col=dailyTrainSeat.getCol();
+                Integer seatIndex=dailyTrainSeat.getCarriageSeatIndex();
+
+                //判断列
+                if(StrUtil.isBlank(column)){
+                    LOG.info("无选座");
+                }
+                else {
+                    if(!column.equals(col)){
+                        LOG.info("座位{}不满足,当前列：{}，目标列：{}",seatIndex,col,column);
+                        continue;
+                    }
+                }
                 boolean ischoose = calSell(dailyTrainSeat, startIndex, endIndex);
                 if(ischoose){
-                    LOG.info("选座成功");
-                    return;
+                    LOG.info("选座{}成功",dailyTrainSeat.getCarriageSeatIndex());
+
                 }
                 else
                 {
                     LOG.info("选座失败");
                     continue;
                 }
+                LOG.info("开始根据偏移值选位");
+                //根据offset选座剩下的座位
+                boolean isGetAllOffsetSeat =true;
+                if (CollUtil.isNotEmpty(offsetList)){
+                    LOG.info("offsetList不为空{}",offsetList);
+                    for(int i=1;i<offsetList.size();i++){
+                        Integer offset=offsetList.get(i);
+                        int nextIndex=seatIndex+offset-1;
+                        LOG.info("nextIndex:{}",nextIndex);
+                        //必须在同一车厢
+                        if(nextIndex>=dailyTrainSeats.size()){
+                            LOG.info("座位{}不在同一车厢",nextIndex);
+                            isGetAllOffsetSeat=false;
+                            break;
+                        }
+                        DailyTrainSeat nextdailyTrainSeat = dailyTrainSeats.get(nextIndex);
+                        boolean ischoosenext = calSell(nextdailyTrainSeat, startIndex, endIndex);
+                        if(ischoosenext){
+                            LOG.info("选座{}成功",nextdailyTrainSeat.getCarriageSeatIndex());
+
+                        }
+                        else
+                        {
+                            LOG.info("选座{}失败",nextdailyTrainSeat.getCarriageSeatIndex());
+                            isGetAllOffsetSeat=false;
+                            break;
+                        }
+
+                    }
+                }
+                if(!isGetAllOffsetSeat){
+
+                    continue;
+                }
+                return;
             }
         }
     }
@@ -214,6 +264,7 @@ public class ConfirmOrderService {
                          Integer endIndex) {
         String sell= dailyTrainSeat.getSell();
         String sellPart=sell.substring(startIndex,endIndex);
+        LOG.info("原sell:{}",sell);
         if(sellPart.contains("1")){
             LOG.info("座位{}~{}不可卖",startIndex,endIndex);
             return false;
@@ -221,7 +272,7 @@ public class ConfirmOrderService {
             LOG.info("座位{}~{}可卖",startIndex,endIndex);
             String curSell = sellPart.replace('0', '1');
             //将curSell对应内容部会原sell
-            LOG.info("原sell:{}",sell);
+
             sell=sell.substring(0,startIndex)+curSell+sell.substring(endIndex,sell.length());
             LOG.info("更新后的sell:{}",sell);
             dailyTrainSeat.setSell(
