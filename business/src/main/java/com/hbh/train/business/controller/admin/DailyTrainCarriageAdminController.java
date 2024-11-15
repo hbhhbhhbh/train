@@ -1,12 +1,11 @@
 package com.hbh.train.business.controller.admin;
 
-import com.hbh.train.common.context.LoginMemberContext;
-import com.hbh.train.common.resp.CommonResp;
-import com.hbh.train.common.resp.PageResp;
 import com.hbh.train.business.req.DailyTrainCarriageQueryReq;
 import com.hbh.train.business.req.DailyTrainCarriageSaveReq;
 import com.hbh.train.business.resp.DailyTrainCarriageQueryResp;
 import com.hbh.train.business.service.DailyTrainCarriageService;
+import com.hbh.train.common.resp.CommonResp;
+import com.hbh.train.common.resp.PageResp;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +34,6 @@ public class DailyTrainCarriageAdminController {
         dailyTrainCarriageService.delete(id);
         return new CommonResp<>();
     }
+
 
 }
