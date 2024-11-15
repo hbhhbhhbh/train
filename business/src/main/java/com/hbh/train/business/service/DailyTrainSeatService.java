@@ -107,6 +107,7 @@ public class DailyTrainSeatService {
     public int countSeats(Date date ,String code,String seatType)
     {
         DailyTrainSeatExample dailyTrainSeatExample = new DailyTrainSeatExample();
+
         dailyTrainSeatExample.createCriteria()
                 .andDateEqualTo(date)
                 .andTrainCodeEqualTo(code)
@@ -117,6 +118,7 @@ public class DailyTrainSeatService {
     public List<DailyTrainSeat>selectByCarriage(Date date ,String code
             ,Integer carriageIndex){
         DailyTrainSeatExample dailyTrainSeatExample = new DailyTrainSeatExample();
+        dailyTrainSeatExample.setOrderByClause("carriage_seat_index asc");
         dailyTrainSeatExample.createCriteria().andDateEqualTo(date)
                 .andTrainCodeEqualTo(code)
                 .andCarriageIndexEqualTo(carriageIndex);

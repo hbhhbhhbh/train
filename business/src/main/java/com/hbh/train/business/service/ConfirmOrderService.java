@@ -149,7 +149,9 @@ public class ConfirmOrderService {
                     ,traincode
                     ,ticketreq0.getSeatTypeCode()
                     ,ticketreq0.getSeat().split("")[0]
-                    ,SeatRelativeOffsetList);
+                    ,SeatRelativeOffsetList
+                    ,dailyTrainTicket.getStartIndex(),
+                    dailyTrainTicket.getEndIndex());
         }
         else {
             LOG.info("未选座");
@@ -158,7 +160,9 @@ public class ConfirmOrderService {
                 ,traincode
                 ,ticketReq.getSeatTypeCode()
                 ,null
-                        , null);
+                        , null
+                        ,dailyTrainTicket.getStartIndex(),
+                        dailyTrainTicket.getEndIndex());
             }
         }
 
@@ -176,7 +180,8 @@ public class ConfirmOrderService {
                 // 更新确认订单为成功
     }
     private void getSeat(Date date,String trainCode,String seatType ,String column
-            ,List<Integer>offsetList)
+            ,List<Integer>offsetList,Integer startIndex,
+                         Integer endIndex)
     {
         List<DailyTrainCarriage> dailyTrainCarriages = dailyTrainCarriageService.selectBySeatType(date, trainCode, seatType);
         LOG.info("共查出{}个符合条件的车厢",dailyTrainCarriages.size());
@@ -185,6 +190,44 @@ public class ConfirmOrderService {
             // 获取座位数据
             List<DailyTrainSeat> dailyTrainSeats = dailyTrainSeatService.selectByCarriage(date, trainCode, dailyTrainCarriage.getIndex());
             LOG.info("座位信息：{}",dailyTrainSeats);
+            for(DailyTrainSeat dailyTrainSeat:dailyTrainSeats){
+                boolean ischoose = calSell(dailyTrainSeat, startIndex, endIndex);
+                if(ischoose){
+                    LOG.info("选座成功");
+                    return;
+                }
+                else
+                {
+                    LOG.info("选座失败");
+                    continue;
+                }
+            }
+        }
+    }
+
+    /**
+     * 计算某座位在区间是否可卖
+     * 例如：sell=1000，看区间内有无1，有1则不可卖，没有则可以
+     * @param dailyTrainSeat
+     */
+    private boolean calSell(DailyTrainSeat dailyTrainSeat ,Integer startIndex,
+                         Integer endIndex) {
+        String sell= dailyTrainSeat.getSell();
+        String sellPart=sell.substring(startIndex,endIndex);
+        if(sellPart.contains("1")){
+            LOG.info("座位{}~{}不可卖",startIndex,endIndex);
+            return false;
+        }else {
+            LOG.info("座位{}~{}可卖",startIndex,endIndex);
+            String curSell = sellPart.replace('0', '1');
+            //将curSell对应内容部会原sell
+            LOG.info("原sell:{}",sell);
+            sell=sell.substring(0,startIndex)+curSell+sell.substring(endIndex,sell.length());
+            LOG.info("更新后的sell:{}",sell);
+            dailyTrainSeat.setSell(
+                    sell
+            );
+            return true;
         }
     }
     private static void reduceTicket(ConfirmOrderDoReq req, DailyTrainTicket dailyTrainTicket) {
