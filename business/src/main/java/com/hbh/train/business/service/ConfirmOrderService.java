@@ -110,6 +110,9 @@ public class ConfirmOrderService {
         LOG.info("余票:{}", dailyTrainTicket);
         // 扣减余票数量，并判断余票是否足够,这只是测试判断，不是真实选票
         reduceTicket(req, dailyTrainTicket);
+
+        //最终选座结果
+        List<DailyTrainSeat> finalSeatList=new ArrayList<>();
         //计算相对第一个座位的偏离值
         //比如选择C1，D2，偏移值为[0,5]
         ConfirmOrderTicketReq ticketreq0=tickets.get(0);
@@ -146,7 +149,8 @@ public class ConfirmOrderService {
                 SeatRelativeOffsetList.add(i1);
             }
             LOG.info("相对偏移值：{}",SeatRelativeOffsetList);
-            getSeat(date
+            getSeat(finalSeatList,
+                    date
                     ,traincode
                     ,ticketreq0.getSeatTypeCode()
                     ,ticketreq0.getSeat().split("")[0]
@@ -157,7 +161,7 @@ public class ConfirmOrderService {
         else {
             LOG.info("未选座");
             for(ConfirmOrderTicketReq ticketReq:tickets){
-                getSeat(date
+                getSeat(finalSeatList,date
                 ,traincode
                 ,ticketReq.getSeatTypeCode()
                 ,null
@@ -166,7 +170,7 @@ public class ConfirmOrderService {
                         dailyTrainTicket.getEndIndex());
             }
         }
-
+        LOG.info("最终list：{}",finalSeatList);
         // 选座
 
                 // 一个车箱一个车箱的获取座位数据
@@ -180,10 +184,12 @@ public class ConfirmOrderService {
                 // 为会员增加购票记录
                 // 更新确认订单为成功
     }
-    private void getSeat(Date date,String trainCode,String seatType ,String column
+    private void getSeat(List<DailyTrainSeat> finalSeatList,Date date,String trainCode,String seatType ,String column
             ,List<Integer>offsetList,Integer startIndex,
                          Integer endIndex)
     {
+        //临时选中表
+        List<DailyTrainSeat> TempSeatList=new ArrayList<>();
         List<DailyTrainCarriage> dailyTrainCarriages = dailyTrainCarriageService.selectBySeatType(date, trainCode, seatType);
         LOG.info("共查出{}个符合条件的车厢",dailyTrainCarriages.size());
         for(DailyTrainCarriage dailyTrainCarriage:dailyTrainCarriages){
@@ -193,9 +199,21 @@ public class ConfirmOrderService {
             LOG.info("车厢{}座位数信息：{}",dailyTrainCarriage.getIndex(),dailyTrainSeats.size());
 
             for(DailyTrainSeat dailyTrainSeat:dailyTrainSeats){
+                TempSeatList.clear();
                 String col=dailyTrainSeat.getCol();
                 Integer seatIndex=dailyTrainSeat.getCarriageSeatIndex();
-
+                boolean alreadyChooseFlag=false;
+                for(DailyTrainSeat finalSeat:finalSeatList){
+                    if(finalSeat.getCarriageSeatIndex().equals(seatIndex)){
+                            LOG.info("座位{}已选",seatIndex);
+                            alreadyChooseFlag=true;
+                            break;
+                    }
+                }
+                if(alreadyChooseFlag){
+                    LOG.info("座位{}被选中",seatIndex);
+                    continue;
+                }
                 //判断列
                 if(StrUtil.isBlank(column)){
                     LOG.info("无选座");
@@ -209,7 +227,7 @@ public class ConfirmOrderService {
                 boolean ischoose = calSell(dailyTrainSeat, startIndex, endIndex);
                 if(ischoose){
                     LOG.info("选座{}成功",dailyTrainSeat.getCarriageSeatIndex());
-
+                    TempSeatList.add(dailyTrainSeat);
                 }
                 else
                 {
@@ -235,7 +253,7 @@ public class ConfirmOrderService {
                         boolean ischoosenext = calSell(nextdailyTrainSeat, startIndex, endIndex);
                         if(ischoosenext){
                             LOG.info("选座{}成功",nextdailyTrainSeat.getCarriageSeatIndex());
-
+                            TempSeatList.add(nextdailyTrainSeat);
                         }
                         else
                         {
@@ -247,9 +265,10 @@ public class ConfirmOrderService {
                     }
                 }
                 if(!isGetAllOffsetSeat){
-
+                    TempSeatList.clear();
                     continue;
                 }
+                finalSeatList.addAll(TempSeatList);
                 return;
             }
         }
