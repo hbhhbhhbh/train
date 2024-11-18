@@ -3,6 +3,7 @@ package com.hbh.train.business.service;
 import com.hbh.train.business.domain.ConfirmOrder;
 import com.hbh.train.business.domain.DailyTrainSeat;
 import com.hbh.train.business.domain.DailyTrainTicket;
+import com.hbh.train.business.enums.ConfirmOrderStatusEnum;
 import com.hbh.train.business.feign.MemberFeign;
 import com.hbh.train.business.mapper.ConfirmOrderMapper;
 import com.hbh.train.business.mapper.DailyTrainSeatMapper;
@@ -110,6 +111,12 @@ public class AfterConfirmOrderService {
             memberTicketReq.setSeatType(dailyTrainSeat.getSeatType());
             CommonResp<Object> commonResp = memberFeign.save(memberTicketReq);
             LOG.info("调用member接口，返回：{}", commonResp);
+
+            ConfirmOrder confirmOrderForUpdate = new ConfirmOrder();
+            confirmOrderForUpdate.setId(confirmOrder.getId());
+            confirmOrderForUpdate.setUpdateTime(new Date());
+            confirmOrderForUpdate.setStatus(ConfirmOrderStatusEnum.SUCCESS.getCode());
+            confirmOrderMapper.updateByPrimaryKeySelective(confirmOrderForUpdate);
 
 
         }
