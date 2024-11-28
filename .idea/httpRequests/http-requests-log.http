@@ -1,3 +1,51 @@
+GET http://localhost:8000/business/redis/set/123/test1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T111135.200.json
+
+###
+
+GET http://localhost:8000/business/redis/set/123/test1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T111018.200.json
+
+###
+
+GET http://localhost:8000/business/redis/set/123/test1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T105510.200.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T105455.200.json
+
+###
+
 GET http://localhost:8000/business/admin/train/query-all
 Accept: application/json
 Connection: Keep-Alive
@@ -543,88 +591,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2024-11-12T170124.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/delete
-Content-Type: application/json
-Content-Length: 72
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T170057.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 78
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.DailyTrainJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T170010.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 78
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.DailyTrainJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T165952.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/add
-Content-Type: application/json
-Content-Length: 135
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "com.hbh.train.batch.job.TestJob",
-  "jobGroupName": "default",
-  "cronExpression": "*/2 * * * * ?",
-  "desc": "test job"
-}
-
-<> 2024-11-12T165913.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 78
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.DailyTrainJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T165742.200.json
 
 ###
 
