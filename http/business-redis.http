@@ -7,3 +7,7 @@ GET http://localhost:8000/business/redis/get/123
 Accept: application/json
 
 ###
+###
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa?page=1&size=5
+    &trainCode=G33&start=乐清&end=淮安
+Accept: application/json

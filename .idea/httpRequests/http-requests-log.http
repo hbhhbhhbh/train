@@ -1,28 +1,140 @@
-GET http://localhost:8000/business/redis/set/123/test1
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T111135.200.json
+<> 2024-11-28T160448.200.json
 
 ###
 
-GET http://localhost:8000/business/redis/set/123/test1
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T111018.200.json
+<> 2024-11-28T160446.200.json
 
 ###
 
-GET http://localhost:8000/business/redis/set/123/test1
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T160354.200.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T160347.200.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T160309.200.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T160253.200.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T155935.200.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T155923.404.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T155908.404.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T155637.404.json
+
+###
+
+GET http://localhost:8000/business/admin/train/query-all
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T155551.200.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T155447.404.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T154444.404.json
+
+###
+
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T151053.404.json
 
 ###
 
@@ -32,7 +144,7 @@ Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T105510.200.json
+<> 2024-11-28T151019.200.json
 
 ###
 
@@ -42,555 +154,347 @@ Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T105455.200.json
+<> 2024-11-28T150955.200.json
 
 ###
 
-GET http://localhost:8000/business/admin/train/query-all
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T102544.200.json
+<> 2024-11-28T150857.404.json
 
 ###
 
-GET http://localhost:8000/business/admin/train/query-all
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T102540.200.json
+<> 2024-11-28T145931.404.json
 
 ###
 
-GET http://localhost:8000/business/admin/train/query-all
+GET http://localhost:8000/business/admin/daily-train-ticket/aaa?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T102359.200.json
+<> 2024-11-28T145908.404.json
 
 ###
 
-GET http://localhost:8000/business/admin/train/query-all
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T102345.200.json
+<> 2024-11-28T145800.404.json
 
 ###
 
-GET http://localhost:8000/business/admin/train/gen-seat/G33
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T102343.200.json
+<> 2024-11-28T145555.404.json
 
 ###
 
-GET http://localhost:8000/business/admin/train/query-all
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T102248.200.json
+<> 2024-11-28T145554.404.json
 
 ###
 
-GET http://localhost:8000/business/admin/train/query-all
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-28T100549.200.json
+<> 2024-11-28T145517.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T151357.503.json
+<> 2024-11-28T145514.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T150717.503.json
+<> 2024-11-28T145506.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T150511.503.json
+<> 2024-11-28T145359.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T144047.200.json
+<> 2024-11-28T145345.200.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T144027.200.json
+<> 2024-11-28T143705.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T144007.200.json
+<> 2024-11-28T143704.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T143959.200.json
+<> 2024-11-28T143703.503.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T142514.200.json
+<> 2024-11-28T143629.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-lists?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T142420.200.json
+<> 2024-11-28T143612.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T141510.200.json
+<> 2024-11-28T143427.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T141347.500.json
+<> 2024-11-28T143426.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T141323.500.json
+<> 2024-11-28T143424.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T141043.200.json
+<> 2024-11-28T143420.503.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T140714.200.json
+<> 2024-11-28T143218.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T140450.200.json
+<> 2024-11-28T143123.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T140438.200.json
+<> 2024-11-28T141815.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T140056.200.json
+<> 2024-11-28T141812.200.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T135925.200.json
+<> 2024-11-28T141802.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T135811.500.json
+<> 2024-11-28T141801.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T135543.200.json
+<> 2024-11-28T141759.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T135048.200.json
+<> 2024-11-28T141752.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T134945.200.json
+<> 2024-11-28T141514.404.json
 
 ###
 
-GET http://localhost:8000/member/hello
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2024-11-18T133502.200.json
+<> 2024-11-28T141505.404.json
 
 ###
 
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 79
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-{
-"name": "com.hbh.train.batch.job.DailyTrainJob",
-"jobGroupName": "DEFAULT"
-
-}
-
-<> 2024-11-13T090706.200.json
+<> 2024-11-28T141456.404.json
 
 ###
 
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 108
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-{
-"name": "com.hbh.train.batch.job.DailyTrainJob",
-"group": "DEFAULT",
-  "cronExpression": "*/5 * * * * ?"
-}
-
-<> 2024-11-13T090609.200.json
+<> 2024-11-28T141449.503.json
 
 ###
 
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 102
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-{
-"name": "com.hbh.train.batch.job.TestJob",
-"group": "DEFAULT",
-  "cronExpression": "*/5 * * * * ?"
-}
-
-<> 2024-11-13T090319.200.json
+<> 2024-11-28T141329.404.json
 
 ###
 
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 103
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
+Accept: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-{
-"name": "com.hbh.train.batch.job.TestJob2",
-"group": "DEFAULT",
-  "cronExpression": "*/5 * * * * ?"
-}
-
-<> 2024-11-13T090301.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 103
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob2",
-"group": "Default",
-  "cronExpression": "*/5 * * * * ?"
-}
-
-<> 2024-11-13T090038.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 103
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob2",
-"group": "default",
-  "cronExpression": "*/5 * * * * ?"
-}
-
-<> 2024-11-13T085723.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 66
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob2",
-"group": "default"
-}
-
-<> 2024-11-13T085632.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 73
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob2",
-"jobGroupName": "default"
-}
-
-<> 2024-11-13T084550.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 73
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob2",
-"jobGroupName": "default"
-}
-
-<> 2024-11-13T084025.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/delete
-Content-Type: application/json
-Content-Length: 78
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.DailyTrainJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T171154.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/add
-Content-Type: application/json
-Content-Length: 141
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "com.hbh.train.batch.job.DailyTrainJob",
-  "jobGroupName": "default",
-  "cronExpression": "*/2 * * * * ?",
-  "desc": "test job"
-}
-
-<> 2024-11-12T171118.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 73
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob2",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T170846.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 72
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T170202.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 72
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.TestJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T170151.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 78
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.DailyTrainJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T170124.200.json
+<> 2024-11-28T141211.404.json
 
 ###
 

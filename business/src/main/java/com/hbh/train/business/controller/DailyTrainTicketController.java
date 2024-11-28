@@ -24,6 +24,10 @@ public class DailyTrainTicketController {
         PageResp<DailyTrainTicketQueryResp> list = dailyTrainTicketService.queryList(req);
         return new CommonResp<>(list);
     }
+    @GetMapping("/aaa")
+    public String queryList3() {
 
+       return "helllo";
+    }
 
 }
