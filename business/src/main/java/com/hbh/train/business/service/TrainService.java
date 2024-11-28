@@ -65,8 +65,8 @@ public class TrainService {
     }
     public List<TrainQueryResp> queryAll() {
         List<Train> trainList = selectAll();
-        LOG.info("再来一次");
-        trainList = selectAll();
+//        LOG.info("再来一次");
+//        trainList = selectAll();
         return BeanUtil.copyToList(trainList, TrainQueryResp.class);
     }
 
