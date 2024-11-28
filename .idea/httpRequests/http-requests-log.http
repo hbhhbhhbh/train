@@ -1,3 +1,13 @@
+GET http://localhost:8000/business/admin/train/query-all
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-11-28T100549.200.json
+
+###
+
 GET http://localhost:8000/member/hello
 Accept: application/json
 Connection: Keep-Alive
@@ -651,22 +661,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2024-11-12T164538.200.json
-
-###
-
-POST http://localhost:8000/batch/admin/job/run
-Content-Type: application/json
-Content-Length: 78
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-"name": "com.hbh.train.batch.job.DailyTrainJob",
-"jobGroupName": "default"
-}
-
-<> 2024-11-12T163759.200.json
 
 ###
 
