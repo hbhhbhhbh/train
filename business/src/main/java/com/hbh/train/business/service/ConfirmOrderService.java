@@ -175,7 +175,13 @@ public class ConfirmOrderService {
         LOG.info("最终list：{}",finalSeatList);
         // 选座
                 // 座位表修改售卖情况sell；
-        afterConfirmOrderService.afterDoConfirm(dailyTrainTicket,finalSeatList,tickets,confirmOrder);
+        try{
+            afterConfirmOrderService.afterDoConfirm(dailyTrainTicket,finalSeatList,tickets,confirmOrder);
+
+        }catch(Exception e){
+            LOG.error("确认订单失败",e);
+            throw new BusinessException(BusinessExceptionEnum.CONFIRM_ORDER_EXCEPTION);
+        }
                 // 余票详情表修改余票；
                 // 为会员增加购票记录
                 // 更新确认订单为成功
