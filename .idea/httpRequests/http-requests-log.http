@@ -1,3 +1,57 @@
+POST http://localhost:8000/business/confirm-order/do
+Content-Type: application/json
+token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzMxOTE1NzksIm1vYmlsZSI6IjEzMzYyNzcwNzYyIiwiaWQiOjE4NTM5Nzc1NTIwNjcxMDQ3NjgsImV4cCI6MTczMzI3Nzk3OSwiaWF0IjoxNzMzMTkxNTc5fQ.AprryIA9TjcJNS54vD7Nw5xVOzmBjFwXzXL8tzyvAtM
+Content-Length: 306
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "dailyTrainTicketId":1857345564920909824,
+  "date":1730390400000,
+  "end":"淮安",
+  "start":"菏泽",
+  "tickets":[
+    {"passengerId":1857306695735316480,
+      "passengerIdCard":"123456",
+      "passengerName":"hbh",
+      "passengerType":"1",
+      "seatTypeCode":"2"
+    }],
+  "trainCode":"G33"
+}
+
+<> 2024-12-03T101516.200.json
+
+###
+
+POST http://localhost:8000/business/confirm-order/do
+Content-Type: application/json
+token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzMxOTE1NzksIm1vYmlsZSI6IjEzMzYyNzcwNzYyIiwiaWQiOjE4NTM5Nzc1NTIwNjcxMDQ3NjgsImV4cCI6MTczMzI3Nzk3OSwiaWF0IjoxNzMzMTkxNTc5fQ.AprryIA9TjcJNS54vD7Nw5xVOzmBjFwXzXL8tzyvAtM
+Content-Length: 306
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "dailyTrainTicketId":1857345564920909824,
+  "date":1730390400000,
+  "end":"淮安",
+  "start":"菏泽",
+  "tickets":[
+    {"passengerId":1857306695735316480,
+      "passengerIdCard":"123456",
+      "passengerName":"hbh",
+      "passengerType":"1",
+      "seatTypeCode":"2"
+    }],
+  "trainCode":"G33"
+}
+
+<> 2024-12-03T101443.200.json
+
+###
+
 GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
 Accept: application/json
 Connection: Keep-Alive
@@ -475,26 +529,6 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2024-11-28T141449.503.json
-
-###
-
-GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-28T141329.404.json
-
-###
-
-GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-28T141211.404.json
 
 ###
 

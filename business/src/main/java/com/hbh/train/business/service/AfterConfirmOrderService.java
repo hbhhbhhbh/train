@@ -13,11 +13,11 @@ import com.hbh.train.common.req.MemberTicketReq;
 import com.hbh.train.common.resp.CommonResp;
 import com.hbh.train.common.util.DateToSqlUtil;
 import io.seata.core.context.RootContext;
-import io.seata.spring.annotation.GlobalTransactional;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -44,7 +44,7 @@ public class AfterConfirmOrderService {
     // 余票详情表修改余票；
     // 为会员增加购票记录
     // 更新确认订单为成功
-    @GlobalTransactional
+    @Transactional
     public void afterDoConfirm(DailyTrainTicket dailyTrainTicket, List<DailyTrainSeat>finalSeatList, List<ConfirmOrderTicketReq> tickets
             ,ConfirmOrder confirmOrder)throws Exception {
         LOG.info("Seata全局事务 {}", RootContext.getXID());
@@ -121,9 +121,7 @@ public class AfterConfirmOrderService {
             confirmOrderForUpdate.setStatus(ConfirmOrderStatusEnum.SUCCESS.getCode());
             confirmOrderMapper.updateByPrimaryKeySelective(confirmOrderForUpdate);
 
-//            if (1 == 1) {
-//                throw new Exception("测试异常11");
-//            }
+
         }
     }
 
