@@ -108,6 +108,13 @@ public class ConfirmOrderService {
         RLock lock=null;
             try {
                 lock = redissonClient.getLock(lockKey);
+
+
+
+
+
+
+
                 boolean trylock = lock.tryLock(0, TimeUnit.SECONDS);
                 if (trylock) {
                     LOG.info("恭喜抢到了");
