@@ -1,3 +1,33 @@
+GET http://localhost:8000/member/hello
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-04T103128.200.json
+
+###
+
+GET http://localhost:8000/member/hello
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-04T103020.200.json
+
+###
+
+GET http://localhost:8000/member/hello
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-04T102722.200.json
+
+###
+
 POST http://localhost:8000/business/confirm-order/do
 Content-Type: application/json
 token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzMxOTE1NzksIm1vYmlsZSI6IjEzMzYyNzcwNzYyIiwiaWQiOjE4NTM5Nzc1NTIwNjcxMDQ3NjgsImV4cCI6MTczMzI3Nzk3OSwiaWF0IjoxNzMzMTkxNTc5fQ.AprryIA9TjcJNS54vD7Nw5xVOzmBjFwXzXL8tzyvAtM
@@ -499,36 +529,6 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2024-11-28T141514.404.json
-
-###
-
-GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-28T141505.404.json
-
-###
-
-GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-28T141456.404.json
-
-###
-
-GET http://localhost:8000/business/admin/daily-train-ticket/query-list3?page=1&size=5&trainCode=G33&start=乐清&end=淮安
-Accept: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2024-11-28T141449.503.json
 
 ###
 

@@ -12,7 +12,6 @@ import com.hbh.train.business.req.ConfirmOrderTicketReq;
 import com.hbh.train.common.req.MemberTicketReq;
 import com.hbh.train.common.resp.CommonResp;
 import com.hbh.train.common.util.DateToSqlUtil;
-import io.seata.core.context.RootContext;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +45,7 @@ public class AfterConfirmOrderService {
 //    @Transactional
     public void afterDoConfirm(DailyTrainTicket dailyTrainTicket, List<DailyTrainSeat>finalSeatList, List<ConfirmOrderTicketReq> tickets
             ,ConfirmOrder confirmOrder)throws Exception {
-        LOG.info("Seata全局事务 {}", RootContext.getXID());
+//        LOG.info("Seata全局事务 {}", RootContext.getXID());
         for (int j = 0; j < finalSeatList.size(); j++) {
             DailyTrainSeat dailyTrainSeat = finalSeatList.get(j);
             DailyTrainSeat dailyTrainSeat1 = new DailyTrainSeat();
