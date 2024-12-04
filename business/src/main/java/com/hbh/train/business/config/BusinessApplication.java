@@ -1,6 +1,5 @@
 package com.hbh.train.business.config;
 
-import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import org.mybatis.spring.annotation.MapperScan;
@@ -36,11 +35,11 @@ public class BusinessApplication {
     private static void initFlowRules(){
         List<FlowRule> rules = new ArrayList<>();
         FlowRule rule = new FlowRule();
-        rule.setResource("doConfirm");
-        rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-        // Set limit QPS to 20.
-        rule.setCount(1);
-        rules.add(rule);
+//        rule.setResource("doConfirm");
+//        rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
+//        // Set limit QPS to 20.
+//        rule.setCount(1);
+//        rules.add(rule);
         FlowRuleManager.loadRules(rules);
     }
 

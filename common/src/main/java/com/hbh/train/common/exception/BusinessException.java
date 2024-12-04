@@ -1,17 +1,22 @@
 package com.hbh.train.common.exception;
 
 public class BusinessException extends RuntimeException {
-    public BusinessExceptionEnum getEnums() {
-        return enums;
+    private BusinessExceptionEnum e;
+
+    public BusinessException(BusinessExceptionEnum e) {
+        this.e = e;
     }
 
-    public void setEnums(BusinessExceptionEnum enums) {
-        this.enums = enums;
+    public BusinessExceptionEnum getE() {
+        return e;
     }
 
-    public BusinessException(BusinessExceptionEnum enums) {
-        this.enums = enums;
+    public void setE(BusinessExceptionEnum e) {
+        this.e = e;
     }
 
-    private BusinessExceptionEnum enums;
+    /**
+     * 不写入堆栈信息，提高性能
+     */
+
 }

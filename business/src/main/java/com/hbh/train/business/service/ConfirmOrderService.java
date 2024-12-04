@@ -102,7 +102,7 @@ public class ConfirmOrderService {
         // 省略业务数据校验，如：车次是否存在，余票是否存在，车次是否在有效期内，tickets条数>0，同乘客同车次是否已买过
         String lockKey= DateUtil.formatDate(req.getDate())+"-"+req.getTrainCode();
         Boolean setIfAbsent = redisTemplate.opsForValue().setIfAbsent(lockKey, lockKey, 10, TimeUnit.SECONDS);
-        if(setIfAbsent){
+        if(Boolean.TRUE.equals(setIfAbsent)){
             LOG.info("恭喜抢到了");
         }else{
             LOG.info("很遗憾，没抢到");
