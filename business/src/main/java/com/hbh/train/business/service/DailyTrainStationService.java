@@ -76,7 +76,12 @@ public class DailyTrainStationService {
         pageResp.setList(list);
         return pageResp;
     }
-
+    public long countByTrainCode(Date date, String trainCode) {
+        DailyTrainStationExample example = new DailyTrainStationExample();
+        example.createCriteria().andDateEqualTo(date).andTrainCodeEqualTo(trainCode);
+        long stationCount = dailyTrainStationMapper.countByExample(example);
+        return stationCount;
+    }
     public void delete(Long id) {
         dailyTrainStationMapper.deleteByPrimaryKey(id);
     }
