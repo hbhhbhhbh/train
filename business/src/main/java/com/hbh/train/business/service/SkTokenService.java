@@ -14,14 +14,18 @@ import com.hbh.train.business.req.SkTokenQueryReq;
 import com.hbh.train.business.req.SkTokenSaveReq;
 import com.hbh.train.business.resp.SkTokenQueryResp;
 import com.hbh.train.common.resp.PageResp;
+import com.hbh.train.common.util.DateToSqlUtil;
 import com.hbh.train.common.util.SnowUtil;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class SkTokenService {
@@ -35,7 +39,8 @@ public class SkTokenService {
 
     @Resource
     private DailyTrainStationService dailyTrainStationService;
-
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 @Resource
 private SkTokenMapperCust skTokenMapperCust;
 
@@ -107,7 +112,16 @@ private SkTokenMapperCust skTokenMapperCust;
     }
     public boolean validSkToken(Date date,String trainCode,Long memberId){
         LOG.info("会员[{}] 获取日期【{}】车次【{}】的令牌开始",memberId,DateUtil.formatDate(date));
-        int updateCount=skTokenMapperCust.decrease(date,trainCode);
+        String lockKey= DateUtil.formatDate(date)+"-"+trainCode+"-"+memberId;
+        Boolean setIfAbsent = redisTemplate.opsForValue().setIfAbsent(lockKey, lockKey, 10, TimeUnit.SECONDS);
+        if(Boolean.TRUE.equals(setIfAbsent)){
+            LOG.info("恭喜抢到令牌锁了");
+        }else{
+            LOG.info("很遗憾，没抢到令牌锁");
+            return false;
+        }
+
+        int updateCount=skTokenMapperCust.decrease(DateToSqlUtil.dataToSql(date),trainCode,1);
         if(updateCount>0){
             return true;
         }else{
