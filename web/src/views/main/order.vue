@@ -1,24 +1,25 @@
 <template>
   <div class="order-train">
-  <span class="order-train-main">{{dailyTrainTicket.date}}</span>&nbsp;
-  <span class="order-train-main">{{dailyTrainTicket.trainCode}}</span>次&nbsp;
-  <span class="order-train-main">{{dailyTrainTicket.start}}</span>站
-  <span class="order-train-main">({{dailyTrainTicket.startTime}})</span>&nbsp;
-  <span class="order-train-main">——</span>&nbsp;
-  <span class="order-train-main">{{dailyTrainTicket.end}}</span>站
-  <span class="order-train-main">({{dailyTrainTicket.endTime}})</span>&nbsp;
-  <div class="order-train-ticket">
-    <span v-for="item in seatTypes" :key="item.type">
-      <span>{{item.desc}}</span>：
-      <span class="order-train-ticket-main">{{item.price}}￥</span>&nbsp;
-      <span class="order-train-ticket-main">{{item.count}}</span>&nbsp;张票&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span>
-  </div>
+    <span class="order-train-main">{{dailyTrainTicket.date}}</span>&nbsp;
+    <span class="order-train-main">{{dailyTrainTicket.trainCode}}</span>次&nbsp;
+    <span class="order-train-main">{{dailyTrainTicket.start}}</span>站
+    <span class="order-train-main">({{dailyTrainTicket.startTime}})</span>&nbsp;
+    <span class="order-train-main">——</span>&nbsp;
+    <span class="order-train-main">{{dailyTrainTicket.end}}</span>站
+    <span class="order-train-main">({{dailyTrainTicket.endTime}})</span>&nbsp;
 
+    <div class="order-train-ticket">
+      <span v-for="item in seatTypes" :key="item.type">
+        <span>{{item.desc}}</span>：
+        <span class="order-train-ticket-main">{{item.price}}￥</span>&nbsp;
+        <span class="order-train-ticket-main">{{item.count}}</span>&nbsp;张票&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>
+    </div>
   </div>
-  <a-divider> </a-divider>
-  <b>勾选购票乘客</b>
-  <a-checkbox-group v-model:value="passengerChecks" :options="passengerOptions"/>
+  <a-divider></a-divider>
+  <b>勾选要购票的乘客：</b>&nbsp;
+  <a-checkbox-group v-model:value="passengerChecks" :options="passengerOptions" />
+
   <div class="order-tickets">
     <a-row class="order-tickets-header" v-if="tickets.length > 0">
       <a-col :span="2">乘客</a-col>
@@ -30,17 +31,14 @@
       <a-col :span="2">{{ticket.passengerName}}</a-col>
       <a-col :span="6">{{ticket.passengerIdCard}}</a-col>
       <a-col :span="4">
-        <a-select v-model:value="ticket.passengerType" style="width: 100%"
-                 >
+        <a-select v-model:value="ticket.passengerType" style="width: 100%">
           <a-select-option v-for="item in PASSENGER_TYPE_ARRAY" :key="item.code" :value="item.code">
             {{item.desc}}
           </a-select-option>
         </a-select>
       </a-col>
       <a-col :span="4">
-        <a-select v-model:value="ticket.seatTypeCode" style="width: 100%"
-
-        >
+        <a-select v-model:value="ticket.seatTypeCode" style="width: 100%">
           <a-select-option v-for="item in seatTypes" :key="item.code" :value="item.code">
             {{item.desc}}
           </a-select-option>
@@ -55,7 +53,7 @@
   <a-modal v-model:visible="visible" title="请核对以下信息"
            style="top: 50px; width: 800px"
            ok-text="确认" cancel-text="取消"
-           @ok="handleOk">
+           @ok="showFirstImageCodeModal">
     <div class="order-tickets">
       <a-row class="order-tickets-header" v-if="tickets.length > 0">
         <a-col :span="3">乘客</a-col>
@@ -96,25 +94,80 @@
         </div>
         <div style="color: #999999">提示：您可以选择{{tickets.length}}个座位</div>
       </div>
-      <br/>
-      最终购票：{{tickets}}
-      最终选座：{{chooseSeatObj}}
+      <br>
+      <div style="color: red">
+        体验排队购票，加入多人一起排队购票：
+        <a-input-number v-model:value="lineNumber" :min="0" :max="20" />
+      </div>
+      <!--<br/>-->
+      <!--最终购票：{{tickets}}-->
+      <!--最终选座：{{chooseSeatObj}}-->
     </div>
   </a-modal>
-  购票列表：{{tickets}}
+
+  <!-- 第二层验证码 后端 -->
+  <a-modal v-model:visible="imageCodeModalVisible" :title="null" :footer="null" :closable="false"
+           style="top: 50px; width: 400px">
+    <p style="text-align: center; font-weight: bold; font-size: 18px">
+      使用服务端验证码削弱瞬时高峰<br/>
+      防止机器人刷票
+    </p>
+    <p>
+      <a-input v-model:value="imageCode" placeholder="图片验证码">
+        <template #suffix>
+          <img v-show="!!imageCodeSrc" :src="imageCodeSrc" alt="验证码" v-on:click="loadImageCode()"/>
+        </template>
+      </a-input>
+    </p>
+    <a-button type="danger" block @click="handleOk">输入验证码后开始购票</a-button>
+  </a-modal>
+
+  <!-- 第一层验证码 纯前端 -->
+  <a-modal v-model:visible="firstImageCodeModalVisible" :title="null" :footer="null" :closable="false"
+           style="top: 50px; width: 400px">
+    <p style="text-align: center; font-weight: bold; font-size: 18px">
+      使用纯前端验证码削弱瞬时高峰<br/>
+      减小后端验证码接口的压力
+    </p>
+    <p>
+      <a-input v-model:value="firstImageCodeTarget" placeholder="验证码">
+        <template #suffix>
+          {{firstImageCodeSourceA}} + {{firstImageCodeSourceB}}
+        </template>
+      </a-input>
+    </p>
+    <a-button type="danger" block @click="validFirstImageCode">提交验证码</a-button>
+  </a-modal>
+
+  <a-modal v-model:visible="lineModalVisible" title="排队购票" :footer="null" :maskClosable="false" :closable="false"
+           style="top: 50px; width: 400px">
+    <div class="book-line">
+      <div v-show="confirmOrderLineCount < 0">
+        <loading-outlined /> 系统正在处理中...
+      </div>
+      <div v-show="confirmOrderLineCount >= 0">
+        <loading-outlined /> 您前面还有{{confirmOrderLineCount}}位用户在购票，排队中，请稍候
+      </div>
+    </div>
+    <br/>
+    <a-button type="danger" @click="onCancelOrder">取消购票</a-button>
+  </a-modal>
 </template>
+
 <script>
-import {computed, defineComponent, onMounted, ref, watch} from 'vue';
-import {notification} from "ant-design-vue";
+
+import {defineComponent, ref, onMounted, watch, computed} from 'vue';
 import axios from "axios";
+import {notification} from "ant-design-vue";
 
 export default defineComponent({
   name: "order-view",
   setup() {
-    const passengers=ref([]);
-    const passengerOptions=ref([]);
-    const passengerChecks=ref([]);
-    const dailyTrainTicket=SessionStorage.get(SESSION_ORDER);
+    const passengers = ref([]);
+    const passengerOptions = ref([]);
+    const passengerChecks = ref([]);
+    const dailyTrainTicket = SessionStorage.get(SESSION_ORDER) || {};
+    console.log("下单的车次信息", dailyTrainTicket);
 
     const SEAT_TYPE = window.SEAT_TYPE;
     console.log(SEAT_TYPE)
@@ -140,8 +193,7 @@ export default defineComponent({
         })
       }
     }
-    console.log("本车次提供的座位：", seatTypes);
-
+    console.log("本车次提供的座位：", seatTypes)
     // 购票列表，用于界面展示，并传递到后端接口，用来描述：哪个乘客购买什么座位的票
     // {
     //   passengerId: 123,
@@ -154,47 +206,24 @@ export default defineComponent({
     const tickets = ref([]);
     const PASSENGER_TYPE_ARRAY = window.PASSENGER_TYPE_ARRAY;
     const visible = ref(false);
+    const lineModalVisible = ref(false);
+    const confirmOrderId = ref();
+    const confirmOrderLineCount = ref(-1);
+    const lineNumber = ref(5);
 
     // 勾选或去掉某个乘客时，在购票列表中加上或去掉一张表
-    watch(() => passengerChecks.value,
-        (newVal, oldVal) => {
-          console.log("勾选乘客发生变化", newVal, oldVal);
-
-          // 处理新增的乘客
-          newVal.forEach((newItem) => {
-            const exists = oldVal.some((oldItem) => oldItem.id === newItem.id); // 检查乘客是否已经在旧的列表中
-            if (!exists) {
-              // 如果乘客没有出现在旧列表中，表示是新增的
-              tickets.value.push({
-                passengerId: newItem.id,
-                passengerType: newItem.type,
-                seatTypeCode: seatTypes[0].code, // 默认座位类型
-                passengerName: newItem.name,
-                passengerIdCard: newItem.idCard
-              });
-            }
-          });
-
-          //处理被移除的乘客
-          if(Tool.isNotEmpty(oldVal))
-          oldVal.forEach((oldItem) => {
-            const removed = !newVal.some((newItem) => newItem.id === oldItem.id); // 检查乘客是否被移除
-            if (removed) {
-              // 如果乘客在新列表中不存在，表示被移除了
-              tickets.value = tickets.value.filter((ticket) => ticket.passengerId !== oldItem.id); // 从购票列表中移除
-            }
-          });
-        },
-        { immediate: true }
-    );
-
-    // const updatePassengerCheck = (passengerId, field, value) => {
-    //   const passenger1 =passengerChecks.value.find(item => item.id === passengerId);
-    //   if (passenger1) {
-    //     // 更新指定字段
-    //     passenger1[field] = value;
-    //   }
-    // };
+    watch(() => passengerChecks.value, (newVal, oldVal)=>{
+      console.log("勾选乘客发生变化", newVal, oldVal)
+      // 每次有变化时，把购票列表清空，重新构造列表
+      tickets.value = [];
+      passengerChecks.value.forEach((item) => tickets.value.push({
+        passengerId: item.id,
+        passengerType: item.type,
+        seatTypeCode: seatTypes[0].code,
+        passengerName: item.name,
+        passengerIdCard: item.idCard
+      }))
+    }, {immediate: true});
 
     // 0：不支持选座；1：选一等座；2：选二等座
     const chooseSeatType = ref(0);
@@ -218,23 +247,20 @@ export default defineComponent({
       console.log("初始化两排座位，都是未选中：", chooseSeatObj.value);
     }, {immediate: true});
 
-    const handleQueryPassenger=()=>{
-      axios.get("/member/passenger/query-mine").then((response) =>{
+    const handleQueryPassenger = () => {
+      axios.get("/member/passenger/query-mine").then((response) => {
         let data = response.data;
         if (data.success) {
           passengers.value = data.content;
-
-          passengers.value.forEach((item)=>passengerOptions.value.push({
+          passengers.value.forEach((item) => passengerOptions.value.push({
             label: item.name,
-            value: item,
+            value: item
           }))
-          // passengerOptions.value.forEach((item) => item.seatType= seatTypes[0].code);
         } else {
-          notification.error({description:data.message});
+          notification.error({description: data.message});
         }
       });
     };
-
 
     const finishCheckPassenger = () => {
       console.log("购票列表：", tickets.value);
@@ -305,15 +331,19 @@ export default defineComponent({
             }
           }
         }
-
       }
 
-      visible.value=true;
-    }
+      // 弹出确认界面
+      visible.value = true;
 
-
+    };
 
     const handleOk = () => {
+      if (Tool.isEmpty(imageCode.value)) {
+        notification.error({description: '验证码不能为空'});
+        return;
+      }
+
       console.log("选好的座位：", chooseSeatObj.value);
 
       // 设置每张票的座位
@@ -346,39 +376,179 @@ export default defineComponent({
         trainCode: dailyTrainTicket.trainCode,
         start: dailyTrainTicket.start,
         end: dailyTrainTicket.end,
-        tickets: tickets.value
+        tickets: tickets.value,
+        imageCodeToken: imageCodeToken.value,
+        imageCode: imageCode.value,
+        lineNumber: lineNumber.value
       }).then((response) => {
         let data = response.data;
         if (data.success) {
-          notification.success({description: "下单成功！"});
+          // notification.success({description: "下单成功！"});
+          visible.value = false;
+          imageCodeModalVisible.value = false;
+          //lineModalVisible.value = true;
+          confirmOrderId.value = data.content;
+         // queryLineCount();
         } else {
           notification.error({description: data.message});
         }
       });
     }
+
+    /* ------------------- 定时查询订单状态 --------------------- */
+    // 确认订单后定时查询
+    let queryLineCountInterval;
+
+    // 定时查询订单结果/排队数量
+    const queryLineCount = () => {
+      confirmOrderLineCount.value = -1;
+      queryLineCountInterval = setInterval(function () {
+        axios.get("/business/confirm-order/query-line-count/" + confirmOrderId.value).then((response) => {
+          let data = response.data;
+          if (data.success) {
+            let result = data.content;
+            switch (result) {
+              case -1 :
+                notification.success({description: "购票成功！"});
+                lineModalVisible.value = false;
+                clearInterval(queryLineCountInterval);
+                break;
+              case -2:
+                notification.error({description: "购票失败！"});
+                lineModalVisible.value = false;
+                clearInterval(queryLineCountInterval);
+                break;
+              case -3:
+                notification.error({description: "抱歉，没票了！"});
+                lineModalVisible.value = false;
+                clearInterval(queryLineCountInterval);
+                break;
+              default:
+                confirmOrderLineCount.value = result;
+            }
+          } else {
+            notification.error({description: data.message});
+          }
+        });
+      }, 500);
+    };
+
+    /* ------------------- 第二层验证码 --------------------- */
+    const imageCodeModalVisible = ref();
+    const imageCodeToken = ref();
+    const imageCodeSrc = ref();
+    const imageCode = ref();
+    /**
+     * 加载图形验证码
+     */
+    const loadImageCode = () => {
+      imageCodeToken.value = Tool.uuid(8);
+      imageCodeSrc.value = process.env.VUE_APP_SERVER + '/business/kaptcha/image-code/' + imageCodeToken.value;
+    };
+
+    const showImageCodeModal = () => {
+      loadImageCode();
+      imageCodeModalVisible.value = true;
+    };
+
+    /* ------------------- 第一层验证码 --------------------- */
+    const firstImageCodeSourceA = ref();
+    const firstImageCodeSourceB = ref();
+    const firstImageCodeTarget = ref();
+    const firstImageCodeModalVisible = ref();
+
+    /**
+     * 加载第一层验证码
+     */
+    const loadFirstImageCode = () => {
+      // 获取1~10的数：Math.floor(Math.random()*10 + 1)
+      firstImageCodeSourceA.value = Math.floor(Math.random()*10 + 1) + 10;
+      firstImageCodeSourceB.value = Math.floor(Math.random()*10 + 1) + 20;
+    };
+
+    /**
+     * 显示第一层验证码弹出框
+     */
+    const showFirstImageCodeModal = () => {
+      loadFirstImageCode();
+      firstImageCodeModalVisible.value = true;
+    };
+
+    /**
+     * 校验第一层验证码
+     */
+    const validFirstImageCode = () => {
+      if (parseInt(firstImageCodeTarget.value) === parseInt(firstImageCodeSourceA.value + firstImageCodeSourceB.value)) {
+        // 第一层验证通过
+        firstImageCodeModalVisible.value = false;
+        showImageCodeModal();
+      } else {
+        notification.error({description: '验证码错误'});
+      }
+    };
+
+    /**
+     * 取消排队
+     */
+    const onCancelOrder = () => {
+      axios.get("/business/confirm-order/cancel/" + confirmOrderId.value).then((response) => {
+        let data = response.data;
+        if (data.success) {
+          let result = data.content;
+          if (result === 1) {
+            notification.success({description: "取消成功！"});
+            // 取消成功时，不用再轮询排队结果
+            clearInterval(queryLineCountInterval);
+            lineModalVisible.value = false;
+          } else {
+            notification.error({description: "取消失败！"});
+          }
+        } else {
+          notification.error({description: data.message});
+        }
+      });
+    };
+
     onMounted(() => {
       handleQueryPassenger();
     });
+
     return {
+      passengers,
       dailyTrainTicket,
       seatTypes,
-      passengers,
-      handleQueryPassenger,
       passengerOptions,
       passengerChecks,
       tickets,
       PASSENGER_TYPE_ARRAY,
       visible,
       finishCheckPassenger,
-      // updatePassengerCheck,
       chooseSeatType,
       chooseSeatObj,
       SEAT_COL_ARRAY,
       handleOk,
+      imageCodeToken,
+      imageCodeSrc,
+      imageCode,
+      showImageCodeModal,
+      imageCodeModalVisible,
+      loadImageCode,
+      firstImageCodeSourceA,
+      firstImageCodeSourceB,
+      firstImageCodeTarget,
+      firstImageCodeModalVisible,
+      showFirstImageCodeModal,
+      validFirstImageCode,
+      lineModalVisible,
+      confirmOrderId,
+      confirmOrderLineCount,
+      onCancelOrder,
+      lineNumber
     };
   },
 });
 </script>
+
 <style>
 .order-train .order-train-main {
   font-size: 18px;
