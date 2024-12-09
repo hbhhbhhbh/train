@@ -3,6 +3,7 @@ package com.hbh.train.business.controller;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.hbh.train.business.req.ConfirmOrderDoReq;
+import com.hbh.train.business.service.BeforeConfirmOrderService;
 import com.hbh.train.business.service.ConfirmOrderService;
 import com.hbh.train.common.exception.BusinessExceptionEnum;
 import com.hbh.train.common.resp.CommonResp;
@@ -26,6 +27,8 @@ public class ConfirmOrderController {
     private StringRedisTemplate redisTemplate;
     @Resource
     private ConfirmOrderService confirmOrderService;
+    @Resource
+    private BeforeConfirmOrderService beforeConfirmOrderService;
     @SentinelResource(value="confirmOrderDo",blockHandler = "doConfirmBlock")
     @PostMapping("/do")
     public CommonResp<Object> doConfirm(@Valid @RequestBody ConfirmOrderDoReq req) {
@@ -43,7 +46,7 @@ public class ConfirmOrderController {
             // 验证通过后，移除验证码
             redisTemplate.delete(imageCodeToken);
         }
-        confirmOrderService.doConfirm(req);
+        beforeConfirmOrderService.beforeDoConfirm(req);
         return new CommonResp<>();
     }
     public CommonResp<Object> doConfirmBlock(ConfirmOrderDoReq req, BlockException e)
