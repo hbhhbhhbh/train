@@ -4,6 +4,8 @@ import com.hbh.train.common.req.PageReq;
 
 public class DailyTrainSeatQueryReq extends PageReq {
 
+    private String trainCode;
+
     public String getTrainCode() {
         return trainCode;
     }
@@ -18,6 +20,4 @@ public class DailyTrainSeatQueryReq extends PageReq {
                 "trainCode='" + trainCode + '\'' +
                 "} " + super.toString();
     }
-
-    private String trainCode;
 }

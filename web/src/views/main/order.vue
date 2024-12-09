@@ -386,9 +386,9 @@ export default defineComponent({
           // notification.success({description: "下单成功！"});
           visible.value = false;
           imageCodeModalVisible.value = false;
-          //lineModalVisible.value = true;
+          lineModalVisible.value = true;
           confirmOrderId.value = data.content;
-         // queryLineCount();
+          queryLineCount();
         } else {
           notification.error({description: data.message});
         }

@@ -3,6 +3,9 @@ package com.hbh.train.business.req;
 import com.hbh.train.common.req.PageReq;
 
 public class TrainStationQueryReq extends PageReq {
+
+    private String trainCode;
+
     public String getTrainCode() {
         return trainCode;
     }
@@ -17,7 +20,4 @@ public class TrainStationQueryReq extends PageReq {
                 "trainCode='" + trainCode + '\'' +
                 "} " + super.toString();
     }
-
-    private String trainCode;
-
 }

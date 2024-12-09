@@ -37,9 +37,11 @@ public class DailyTrainAdminController {
         dailyTrainService.delete(id);
         return new CommonResp<>();
     }
+
     @GetMapping("/gen-daily/{date}")
-    public CommonResp<Object> genDaily(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
+    public CommonResp<Object> genDaily(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
         dailyTrainService.genDaily(date);
         return new CommonResp<>();
     }
+
 }

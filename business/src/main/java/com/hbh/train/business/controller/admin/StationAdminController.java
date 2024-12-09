@@ -30,15 +30,17 @@ public class StationAdminController {
         PageResp<StationQueryResp> list = stationService.queryList(req);
         return new CommonResp<>(list);
     }
-    @GetMapping("/query-all")
-    public CommonResp<List<StationQueryResp>> queryAll() {
-        List<StationQueryResp> list =stationService.queryAll();
-        return new CommonResp<>(list);
-    }
+
     @DeleteMapping("/delete/{id}")
     public CommonResp<Object> delete(@PathVariable Long id) {
         stationService.delete(id);
         return new CommonResp<>();
+    }
+
+    @GetMapping("/query-all")
+    public CommonResp<List<StationQueryResp>> queryList() {
+        List<StationQueryResp> list = stationService.queryAll();
+        return new CommonResp<>(list);
     }
 
 }

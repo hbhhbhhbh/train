@@ -1,7 +1,6 @@
 package com.hbh.train.business.controller;
 
 import com.hbh.train.business.resp.TrainQueryResp;
-import com.hbh.train.business.service.TrainSeatService;
 import com.hbh.train.business.service.TrainService;
 import com.hbh.train.common.resp.CommonResp;
 import jakarta.annotation.Resource;
@@ -17,12 +16,9 @@ public class TrainController {
 
     @Resource
     private TrainService trainService;
-    @Resource
-    private TrainSeatService trainSeatService;
-
 
     @GetMapping("/query-all")
-    public CommonResp<List<TrainQueryResp>> queryAll() {
+    public CommonResp<List<TrainQueryResp>> queryList() {
         List<TrainQueryResp> list = trainService.queryAll();
         return new CommonResp<>(list);
     }

@@ -10,21 +10,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class SpringMvcConfig implements WebMvcConfigurer {
 
-    @Resource
-    LogInterceptor logInterceptor;
+   @Resource
+   LogInterceptor logInterceptor;
 
-    @Resource
-    MemberInterceptor memberInterceptor;
+   @Resource
+   MemberInterceptor memberInterceptor;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(logInterceptor);
 
-        registry.addInterceptor(memberInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns(
-                        "/hello"
+   @Override
+   public void addInterceptors(InterceptorRegistry registry) {
+       registry.addInterceptor(logInterceptor)
+               .addPathPatterns("/**");
 
-                );
-    }
+       registry.addInterceptor(memberInterceptor)
+              .addPathPatterns("/**")
+              .excludePathPatterns(
+                      "/hello"
+              );
+   }
 }

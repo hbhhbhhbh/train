@@ -13,24 +13,7 @@ public class ConfirmOrderDoReq {
     /**
      * 会员id
      */
-
     private Long memberId;
-
-    public String getImageCode() {
-        return imageCode;
-    }
-
-    public void setImageCode(String imageCode) {
-        this.imageCode = imageCode;
-    }
-
-    public String getImageCodeToken() {
-        return imageCodeToken;
-    }
-
-    public void setImageCodeToken(String imageCodeToken) {
-        this.imageCodeToken = imageCodeToken;
-    }
 
     /**
      * 日期
@@ -69,6 +52,9 @@ public class ConfirmOrderDoReq {
     @NotEmpty(message = "【车票】不能为空")
     private List<ConfirmOrderTicketReq> tickets;
 
+    /**
+     * 验证码
+     */
     @NotBlank(message = "【图片验证码】不能为空")
     private String imageCode;
 
@@ -78,6 +64,15 @@ public class ConfirmOrderDoReq {
     @NotBlank(message = "【图片验证码】参数非法")
     private String imageCodeToken;
 
+    /**
+     * 日志跟踪号
+     */
+    private String logId;
+
+    /**
+     * 加入排队人数，用于体验排队功能
+     */
+    private int lineNumber;
 
     public Long getMemberId() {
         return memberId;
@@ -131,26 +126,56 @@ public class ConfirmOrderDoReq {
         return tickets;
     }
 
-    public void setTickets(List<ConfirmOrderTicketReq>tickets) {
+    public void setTickets(List<ConfirmOrderTicketReq> tickets) {
         this.tickets = tickets;
+    }
+
+    public String getImageCode() {
+        return imageCode;
+    }
+
+    public void setImageCode(String imageCode) {
+        this.imageCode = imageCode;
+    }
+
+    public String getImageCodeToken() {
+        return imageCodeToken;
+    }
+
+    public void setImageCodeToken(String imageCodeToken) {
+        this.imageCodeToken = imageCodeToken;
+    }
+
+    public String getLogId() {
+        return logId;
+    }
+
+    public void setLogId(String logId) {
+        this.logId = logId;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
+    }
+
+    public void setLineNumber(int lineNumber) {
+        this.lineNumber = lineNumber;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-
-        sb.append(", memberId=").append(memberId);
-        sb.append(", date=").append(date);
-        sb.append(", trainCode=").append(trainCode);
-        sb.append(", start=").append(start);
-        sb.append(", end=").append(end);
-        sb.append(", dailyTrainTicketId=").append(dailyTrainTicketId);
-        sb.append(", tickets=").append(tickets);
-
-        sb.append("]");
-        return sb.toString();
+        return "ConfirmOrderDoReq{" +
+                "memberId=" + memberId +
+                ", date=" + date +
+                ", trainCode='" + trainCode + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", dailyTrainTicketId=" + dailyTrainTicketId +
+                ", tickets=" + tickets +
+                ", imageCode='" + imageCode + '\'' +
+                ", imageCodeToken='" + imageCodeToken + '\'' +
+                ", logId='" + logId + '\'' +
+                ", lineNumber=" + lineNumber +
+                '}';
     }
 }

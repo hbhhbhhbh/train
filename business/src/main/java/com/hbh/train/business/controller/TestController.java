@@ -9,21 +9,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestController {
+
     @Resource
     private TestService testService;
+
     @SentinelResource("hello")
     @GetMapping("/hello")
     public String hello() throws InterruptedException {
-        int i= RandomUtil.randomInt(1,10);
-        if(i<=1){
-            throw new RuntimeException("随机出了异常");
+        int i = RandomUtil.randomInt(1, 10);
+        if (i <= 2) {
+            throw new RuntimeException("测试异常");
         }
-        return "Hello World!ceshi";
+        return "Hello World! Business!";
     }
+
     @SentinelResource("hello1")
     @GetMapping("/hello1")
     public String hello1() throws InterruptedException {
         testService.hello2();
-        return "Hello World1";
+        return "Hello World! Business1!";
     }
+
 }

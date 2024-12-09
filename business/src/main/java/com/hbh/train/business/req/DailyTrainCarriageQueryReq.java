@@ -7,8 +7,16 @@ import java.util.Date;
 
 public class DailyTrainCarriageQueryReq extends PageReq {
 
+    /**
+     * 日期
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
+
+    /**
+     * 车次编号
+     */
+    private String trainCode;
 
     public Date getDate() {
         return date;
@@ -18,11 +26,11 @@ public class DailyTrainCarriageQueryReq extends PageReq {
         this.date = date;
     }
 
-    public String gettrainCode() {
+    public String getTrainCode() {
         return trainCode;
     }
 
-    public void settrainCode(String trainCode) {
+    public void setTrainCode(String trainCode) {
         this.trainCode = trainCode;
     }
 
@@ -33,6 +41,4 @@ public class DailyTrainCarriageQueryReq extends PageReq {
                 ", trainCode='" + trainCode + '\'' +
                 "} " + super.toString();
     }
-
-    private String trainCode;
 }

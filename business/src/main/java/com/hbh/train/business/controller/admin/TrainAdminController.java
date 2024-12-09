@@ -19,6 +19,7 @@ public class TrainAdminController {
 
     @Resource
     private TrainService trainService;
+
     @Resource
     private TrainSeatService trainSeatService;
 
@@ -36,14 +37,16 @@ public class TrainAdminController {
 
     @DeleteMapping("/delete/{id}")
     public CommonResp<Object> delete(@PathVariable Long id) {
-
+        trainService.delete(id);
         return new CommonResp<>();
     }
+
     @GetMapping("/query-all")
-    public CommonResp<List<TrainQueryResp>> queryAll() {
+    public CommonResp<List<TrainQueryResp>> queryList() {
         List<TrainQueryResp> list = trainService.queryAll();
         return new CommonResp<>(list);
     }
+
     @GetMapping("/gen-seat/{trainCode}")
     public CommonResp<Object> genSeat(@PathVariable String trainCode) {
         trainSeatService.genTrainSeat(trainCode);

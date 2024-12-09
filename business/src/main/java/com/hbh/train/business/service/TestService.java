@@ -8,7 +8,6 @@ public class TestService {
 
     @SentinelResource("hello2")
     public void hello2() throws InterruptedException {
-
         Thread.sleep(500);
     }
 }

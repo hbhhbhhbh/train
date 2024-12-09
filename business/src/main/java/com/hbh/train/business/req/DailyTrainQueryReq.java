@@ -6,8 +6,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class DailyTrainQueryReq extends PageReq {
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
+
+    private String code;
 
     public Date getDate() {
         return date;
@@ -32,7 +35,4 @@ public class DailyTrainQueryReq extends PageReq {
                 ", code='" + code + '\'' +
                 "} " + super.toString();
     }
-
-    private String code;
-
 }
